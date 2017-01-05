@@ -1,3 +1,6 @@
+/*
+  === GENERAL TABLE SETTINGS ===
+*/
 .spicy-datatable {
   width: 100%;
   overflow: scroll;
@@ -21,6 +24,10 @@
   vertical-align: middle;
 }
 
+.spicy-datatable > tbody > tr {
+  transition: 0.25s all;
+}
+
 .spicy-datatable > tbody > tr:hover {
   background: whitesmoke;
 }
@@ -33,11 +40,19 @@
   background: #7a7ca0;
 }
 
+/*
+  === ENTRY COUNTER AT BOTTOM ===
+*/
+
 .spicy-datatable-counter {
   text-align: left;
   font-size: 12px;
   padding: 0 20px;
 }
+
+/*
+  === PAGINATION SETTINGS ===
+*/
 
 .spicy-datatable-pagination-root {
   width: 100%;
@@ -95,6 +110,10 @@
   color: #ccc;
   cursor: default;
 }
+
+/*
+  === TOP OPTIONS ===
+*/
 
 .spicy-datatableoptions-search {
   text-align: right;

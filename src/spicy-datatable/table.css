@@ -21,6 +21,10 @@
   vertical-align: middle;
 }
 
+.spicy-datatable > tbody > tr {
+  transition: 0.25s all;
+}
+
 .spicy-datatable > tbody > tr:hover {
   background: whitesmoke;
 }

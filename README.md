@@ -2,6 +2,8 @@
 
 A React.js library for displaying datatables. Features search and pagination.
 
+[🎉Live demo.](https://build-nincjkfjsg.now.sh/)
+
 To, get started with `spicy-datatable` in your project:
 
 ```
@@ -51,15 +53,15 @@ The `rows` prop is an array of objects that have the key-value pairs described i
 const rows = [
   {
     id: 1,
-    name:  'Sansa',
-    email: 'Stark',
+    name:  'Sansa Stark',
+    email: 'sansa@winterfell.gov',
     onClickHandler: someFunction,
     isActive: true,
   },
   {
     id: 2,
-    name: 'Jon',
-    email: 'Stark',
+    name: 'Jon Snow',
+    email: 'jon@nightswatch.gov',
     onClickHandler: someFunction,
     isActive: false,
   },

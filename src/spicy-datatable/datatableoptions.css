@@ -1,0 +1,23 @@
+.spicy-datatableoptions-search {
+  text-align: right;
+  float: right;
+}
+
+.spicy-datatableoptions-sizepicker {
+  float: left;
+  text-align: left;
+  cursor: pointer;
+}
+
+.spicy-datatableoptions-sizepicker--selectfield {
+  margin: 0 5px;
+}
+
+.spicy-datatableoptions-search--input {
+  margin-left: 10px;
+}
+
+.spicy-datatableoptions-search--input,
+.spicy-datatableoptions-search--label {
+  cursor: pointer;
+}

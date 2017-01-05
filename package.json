@@ -1,0 +1,23 @@
+{
+  "name": "spicy-datatable",
+  "author": {
+    "name": "Filip Danić",
+    "email": "filipdanic7@gmail.com",
+    "url": "http://danicfilip.com"
+  },
+  "version": "0.1.0",
+  "license": "MIT",
+  "devDependencies": {
+    "react-scripts": "0.8.4"
+  },
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

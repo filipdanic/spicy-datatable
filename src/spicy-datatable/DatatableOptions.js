@@ -25,7 +25,7 @@ class DatatableOptions extends Component {
         <div className="spicy-datatableoptions-search">
           <label className="spicy-datatableoptions-search--label">
             Search:
-            <input className="spicy-datatableoptions-search--input" type="text" onChange={onSearch} />
+            <input className="spicy-datatableoptions-search--input" type="text" onChange={onSearch} placeholder="Type to search…" />
           </label>
         </div>
       </div>

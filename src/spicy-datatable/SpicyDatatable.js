@@ -4,6 +4,10 @@ import DatatableOptions from './DatatableOptions.js';
 import { filterRows } from './utils.js';
 import style from './table.css';
 
+const miniCache = {
+  searchQuery: '',
+};
+
 class SpicyDatatable extends Component {
 
   static propTypes = {
@@ -17,9 +21,9 @@ class SpicyDatatable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemsPerPage: 10,
-      currentPage: 1,
-      searchQuery: '',
+      itemsPerPage: miniCache.itemsPerPage || 10,
+      currentPage: miniCache.currentPage || 1,
+      searchQuery: miniCache.searchQuery || '',
     };
   }
 
@@ -85,16 +89,21 @@ class SpicyDatatable extends Component {
     this.setState({
       currentPage: nextPage,
     });
+    miniCache.currentPage = nextPage;
   }
 
   handleSearchQueryChange(e) {
     const { value } = e.target;
     this.setState({ searchQuery: value, currentPage: 1 });
+    miniCache.searchQuery = value;
+    miniCache.currentPage = 1;
   }
 
   handlePageSizeChange(e) {
     const { value } = e.target;
     this.setState({ itemsPerPage: Number(value), currentPage: 1 });
+    miniCache.itemsPerPage = Number(value);
+    miniCache.currentPage = 1;
   }
 }
 

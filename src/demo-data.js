@@ -45,6 +45,8 @@ while (i <= 1000) {
     id: i,
     name: nextName(i),
     email: nextEmail(i),
+    onClickHandler: (e) => { console.log(e.target); },
+    isActive: i === 3,
   });
   i++;
 }

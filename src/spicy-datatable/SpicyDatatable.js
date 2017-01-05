@@ -52,7 +52,12 @@ class SpicyDatatable extends Component {
           </thead>
           <tbody>
             {rows.map((r, i) =>
-              <tr key={i} >
+              <tr
+                key={i}
+                onClick={r.onClickHandler ? r.onClickHandler : () => undefined}
+                style={{ cursor: r.onClickHandler ? 'pointer' : 'default' }}
+                className={r.isActive ? 'spicy-datatable--selected-row' : ''}
+              >
                 {columns.map((c, i) =>
                   <td key={i}>
                     {r[c.key]}

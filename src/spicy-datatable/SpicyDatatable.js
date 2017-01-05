@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Pagination from './Pagination.js';
 import DatatableOptions from './DatatableOptions.js';
 import { filterRows } from './utils.js';
-import './table.css';
+import style from './table.css';
 
 class SpicyDatatable extends Component {
 

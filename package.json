@@ -30,7 +30,8 @@
     "babel-core": "^6.1.18",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-stage-0": "^6.16.0",
-    "babel-preset-react": "^6.16.0"
+    "babel-preset-react": "^6.16.0",
+    "babel-plugin-transform-css-import-to-string": "^0.0.2"
   },
   "dependencies": {
     "react": "^15.4.1",
@@ -40,7 +41,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "compile": "babel --presets es2015,stage-0,react -d lib/ src/spicy-datatable",
+    "compile": "babel --presets es2015,stage-0,react --plugins transform-css-import-to-string -d lib/ src/spicy-datatable",
     "prepublish": "npm run compile"
   }
 }

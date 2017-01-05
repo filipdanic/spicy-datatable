@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { paginationButtons } from './utils.js';
-import './pagination.css';
+import style from './pagination.css';
 
 class Pagination extends Component {
 

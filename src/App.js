@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SpicyDatatable from './spicy-datatable/SpicyDatatable.js';
 import logo from './logo.svg';
-import './App.css';
+import style from './App.css';
 
 import data from './demo-data.js';
 const { columns, rows } = data;

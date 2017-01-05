@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import './datatableoptions.css';
+import style from './datatableoptions.css';
 
 class DatatableOptions extends Component {
 

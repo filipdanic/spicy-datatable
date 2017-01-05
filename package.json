@@ -22,7 +22,7 @@
     "url": "http://danicfilip.com"
   },
   "main": "src/spicy-datatable/SpicyDatatable.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "devDependencies": {
     "react-scripts": "0.8.4"

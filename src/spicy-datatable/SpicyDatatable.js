@@ -14,6 +14,14 @@ function getSafely(tableKey) {
   return { searchQuery: '' };
 }
 
+function setSafely(tableKey, prop, val) {
+  if (miniCache[tableKey] === undefined) {
+    miniCache[tableKey] = {};
+  }
+  miniCache[tableKey][prop] = val;
+
+}
+
 class SpicyDatatable extends Component {
 
   static propTypes = {
@@ -97,23 +105,23 @@ class SpicyDatatable extends Component {
     this.setState({
       currentPage: nextPage,
     });
-    miniCache[tableKey].currentPage = nextPage;
+    setSafely(tableKey, 'currentPage', nextPage);
   }
 
   handleSearchQueryChange(e) {
     const { value } = e.target;
     const { tableKey } = this.props;
     this.setState({ searchQuery: value, currentPage: 1 });
-    miniCache[tableKey].searchQuery = value;
-    miniCache[tableKey].currentPage = 1;
+    setSafely(tableKey, 'searchQuery', value);
+    setSafely(tableKey, 'currentPage', 1);
   }
 
   handlePageSizeChange(e) {
     const { value } = e.target;
     const { tableKey } = this.props;
     this.setState({ itemsPerPage: Number(value), currentPage: 1 });
-    miniCache[tableKey].itemsPerPage = Number(value);
-    miniCache[tableKey].currentPage = 1;
+    setSafely(tableKey, 'itemsPerPage', Number(value));
+    setSafely(tableKey, 'currentPage', 1);
   }
 }
 

@@ -93,24 +93,27 @@ class SpicyDatatable extends Component {
   }
 
   handlePagination(nextPage) {
+    const { tableKey } = this.props;
     this.setState({
       currentPage: nextPage,
     });
-    miniCache.currentPage = nextPage;
+    miniCache[tableKey].currentPage = nextPage;
   }
 
   handleSearchQueryChange(e) {
     const { value } = e.target;
+    const { tableKey } = this.props;
     this.setState({ searchQuery: value, currentPage: 1 });
-    miniCache.searchQuery = value;
-    miniCache.currentPage = 1;
+    miniCache[tableKey].searchQuery = value;
+    miniCache[tableKey].currentPage = 1;
   }
 
   handlePageSizeChange(e) {
     const { value } = e.target;
+    const { tableKey } = this.props;
     this.setState({ itemsPerPage: Number(value), currentPage: 1 });
-    miniCache.itemsPerPage = Number(value);
-    miniCache.currentPage = 1;
+    miniCache[tableKey].itemsPerPage = Number(value);
+    miniCache[tableKey].currentPage = 1;
   }
 }
 

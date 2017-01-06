@@ -5,12 +5,19 @@ import { filterRows } from './utils.js';
 import style from './table.css';
 
 const miniCache = {
-  searchQuery: '',
 };
+
+function getSafely(tableKey) {
+  if (miniCache[tableKey]) {
+    return miniCache[tableKey];
+  }
+  return { searchQuery: '' };
+}
 
 class SpicyDatatable extends Component {
 
   static propTypes = {
+    tableKey: PropTypes.string.isRequired,
     columns: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.string,
       label: PropTypes.string,
@@ -21,9 +28,9 @@ class SpicyDatatable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemsPerPage: miniCache.itemsPerPage || 10,
-      currentPage: miniCache.currentPage || 1,
-      searchQuery: miniCache.searchQuery || '',
+      itemsPerPage: getSafely(props.tableKey).itemsPerPage || 10,
+      currentPage: getSafely(props.tableKey).currentPage || 1,
+      searchQuery: getSafely(props.tableKey).searchQuery || '',
     };
   }
 

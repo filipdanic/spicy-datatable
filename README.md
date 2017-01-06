@@ -20,6 +20,7 @@ import SpicyDatatable from 'spicy-datatable';
 // somewhere:
 
 <SpicyDatatable
+  tableKey={key}
   columns={columns}
   rows={rows}
 />
@@ -29,6 +30,8 @@ import SpicyDatatable from 'spicy-datatable';
 Look at the [demo data file](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) for examples of how the `rows` and `columns` props look.
 
 ## Prop Demo
+
+The `tableKey` is a String used to identify the table dataset. It is required.
 
 The `columns` prop is an array of colum objects which have a key and label. Like this:
 

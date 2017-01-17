@@ -1,10 +1,10 @@
 # spicy-datatable
 
-A React.js library for displaying datatables. Features search and pagination.
+A React.js datatables without jQuery or other dependencies. Includes search and pagination.
 
-[🎉Live demo.](https://build-nincjkfjsg.now.sh/)
+[🎉 Live demo.](https://build-nincjkfjsg.now.sh/)
 
-To, get started with `spicy-datatable` in your project:
+To get started with `spicy-datatable` in your project:
 
 ```
 npm i spicy-datatable --save
@@ -27,7 +27,11 @@ import SpicyDatatable from 'spicy-datatable';
 
 ```
 
+Now you are all set to enjoy some ReactJS datatables in your project! 🙌
+
 Look at the [demo data file](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) for examples of how the `rows` and `columns` props look.
+
+You can also clone this repo which includes a full semo with `create-react-app` that you can use to try out the library.
 
 ## Prop Demo
 
@@ -49,7 +53,7 @@ const columns = [{
 ];
 ```
 
-The `rows` prop is an array of objects that have the key-value pairs described in our columns. For example:
+The `rows` prop is an array of objects that have the `key-value` pairs described in our columns. For example:
 
 ```javascript
 
@@ -75,11 +79,11 @@ The key `onClickHandler` is optional. It will attach an `onClick()` callback on 
 
 ## Styling
 
-Out of the box, SpicyDatatable is bare-bones. Include this [CSS starter file](https://github.com/filipdanic/spicy-datatable/blob/master/src/sample-styles.css) in your project to get the look from the demo. Edit it to suit your needs.
+Out of the box, `spicy-datatable` is bare-bones. Include this [CSS starter file](https://github.com/filipdanic/spicy-datatable/blob/master/src/sample-styles.css) in your project to get the look from the demo. Edit it to suit your needs.
 
 ## In the Works
 
-- More control over pagination and search.
+- More control over pagination and search (and a better performing search!)
 - Unit and performance tests.
 - Sortable columns.
 - CSV/PDF/Excel download

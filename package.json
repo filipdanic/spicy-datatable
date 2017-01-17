@@ -1,6 +1,6 @@
 {
   "name": "spicy-datatable",
-  "description": "A React.js library for displaying datatables. Features search and pagination.",
+  "description": "A React.js datatables without jQuery or other dependencies. Includes search and pagination.",
   "homepage": "https://github.com/filipdanic/spicy-datatable",
   "bugs": {
     "url": "https://github.com/filipdanic/spicy-datatable/issues"

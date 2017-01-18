@@ -1,3 +1,10 @@
+/**
+ * @fileoverview DatatableOptions.js
+ * A component used to display the select field for number of rows per page as well as a search field.
+ * Accepts two callback functions: onPageSizeChange() and onSearch().
+ * TODO #1 Split this into two components
+ * TODO #2 Make the page size options costumizable and leave [10, 25, 50, 100] as defaults.
+ */
 import React, { Component, PropTypes } from 'react';
 import style from './datatableoptions.css';
 

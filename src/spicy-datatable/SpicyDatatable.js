@@ -1,26 +1,15 @@
+/**
+ * @fileoverview SpicyDatatable
+ * Main entry file for `spicy-datatable` package. Renders a tabele given a tableKey, columns, and rows prop.
+ * For complete documentation of how to use this, refer to the `README.md` or check out the examples in `App.ja`
+ */
 import React, { Component, PropTypes } from 'react';
 import Pagination from './Pagination.js';
 import DatatableOptions from './DatatableOptions.js';
-import { filterRows } from './utils.js';
+import { filterRows, getSafely, setSafely } from './utils.js';
 import style from './table.css';
 
-const miniCache = {
-};
-
-function getSafely(tableKey) {
-  if (miniCache[tableKey]) {
-    return miniCache[tableKey];
-  }
-  return { searchQuery: '' };
-}
-
-function setSafely(tableKey, prop, val) {
-  if (miniCache[tableKey] === undefined) {
-    miniCache[tableKey] = {};
-  }
-  miniCache[tableKey][prop] = val;
-
-}
+const miniCache = {};
 
 class SpicyDatatable extends Component {
 
@@ -36,9 +25,9 @@ class SpicyDatatable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemsPerPage: getSafely(props.tableKey).itemsPerPage || 10,
-      currentPage: getSafely(props.tableKey).currentPage || 1,
-      searchQuery: getSafely(props.tableKey).searchQuery || '',
+      itemsPerPage: getSafely(miniCache, props.tableKey).itemsPerPage || 10,
+      currentPage: getSafely(miniCache, props.tableKey).currentPage || 1,
+      searchQuery: getSafely(miniCache, props.tableKey).searchQuery || '',
     };
   }
 
@@ -105,23 +94,23 @@ class SpicyDatatable extends Component {
     this.setState({
       currentPage: nextPage,
     });
-    setSafely(tableKey, 'currentPage', nextPage);
+    setSafely(miniCache, tableKey, 'currentPage', nextPage);
   }
 
   handleSearchQueryChange(e) {
     const { value } = e.target;
     const { tableKey } = this.props;
     this.setState({ searchQuery: value, currentPage: 1 });
-    setSafely(tableKey, 'searchQuery', value);
-    setSafely(tableKey, 'currentPage', 1);
+    setSafely(miniCache, tableKey, 'searchQuery', value);
+    setSafely(miniCache, tableKey, 'currentPage', 1);
   }
 
   handlePageSizeChange(e) {
     const { value } = e.target;
     const { tableKey } = this.props;
     this.setState({ itemsPerPage: Number(value), currentPage: 1 });
-    setSafely(tableKey, 'itemsPerPage', Number(value));
-    setSafely(tableKey, 'currentPage', 1);
+    setSafely(miniCache, tableKey, 'itemsPerPage', Number(value));
+    setSafely(miniCache, tableKey, 'currentPage', 1);
   }
 }
 

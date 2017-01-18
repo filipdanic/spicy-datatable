@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Pagination.js
+ * Component that renders all of the pagination items as a unordered list.
+ * Lots of code reused from https://github.com/chengjianhua/react-datatable
+ *
+ * TODO #1 Refactor and rethink this implementation.
+ */
+
 import React, { Component, PropTypes } from 'react';
 import { paginationButtons } from './utils.js';
 import style from './pagination.css';

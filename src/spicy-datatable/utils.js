@@ -1,3 +1,37 @@
+/**
+ * Safely get the miniCache object for a tableKey prop.
+ * @param {Object} miniCache
+ * @param {String} tableKey
+ * @returns {Object} miniCache
+ */
+export function getSafely(miniCache, tableKey) {
+  if (miniCache[tableKey]) {
+    return miniCache[tableKey];
+  }
+  return { searchQuery: '' };
+}
+
+/**
+ * Safely cache a prop in the miniCache object for a tableKey prop.
+ * @param {Object} miniCache
+ * @param {String} tableKey
+ * @param {String} prop
+ * @param {Any} val
+ * @returns {Object} miniCache
+ */
+export function setSafely(miniCache, tableKey, prop, val) {
+  if (miniCache[tableKey] === undefined) {
+    miniCache[tableKey] = {};
+  }
+  miniCache[tableKey][prop] = val;
+}
+
+/**
+ * Taken from https://github.com/chengjianhua/react-datatable
+ * @param {Number} len
+ * @param {Number} start
+ * @returns {Array} out
+ */
 export function range(len, start) {
   let end = 0;
   const out = [];
@@ -17,6 +51,13 @@ export function range(len, start) {
   return out;
 }
 
+/**
+ * Taken from https://github.com/chengjianhua/react-datatable
+ * @param {Array} buttons
+ * @param {Number} page
+ * @param {Array} pages
+ * @returns {Array} numbers
+ */
 export function paginationButtons(buttons, page, pages) {
   let numbers = [];
   const half = Math.floor(buttons / 2);
@@ -41,6 +82,13 @@ export function paginationButtons(buttons, page, pages) {
   return numbers;
 }
 
+/**
+ * Sorts the rows.
+ * @param {Array} rows
+ * @param {Array} columns
+ * @param {String} searchQuery
+ * @returns {Array} filteredRows
+ */
 export function filterRows(rows, columns, searchQuery) {
   const filteredRows = [];
   rows.map(row => {

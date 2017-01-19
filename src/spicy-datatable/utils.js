@@ -83,7 +83,7 @@ export function paginationButtons(buttons, page, pages) {
 }
 
 /**
- * Sorts the rows.
+ * Searches the rows for the searchQuery.
  * @param {Array} rows
  * @param {Array} columns
  * @param {String} searchQuery
@@ -93,12 +93,10 @@ export function filterRows(rows, columns, searchQuery) {
   const filteredRows = [];
   rows.map(row => {
     columns.map(column => {
-      try {
-        const reg = new RegExp(searchQuery.split('').join('.*?'), ['g']);
-          if (reg.exec(String(row[column.key]).toLocaleLowerCase())) {
-            filteredRows.push(row);
-          }
-      } catch(e) {}
+      const rowValue = String(row[column.key]).toLowerCase();
+      if (rowValue.length >= searchQuery.length && rowValue.indexOf(searchQuery.toLowerCase()) >= 0) {
+        filteredRows.push(row);
+      }
     });
   });
   return filteredRows;

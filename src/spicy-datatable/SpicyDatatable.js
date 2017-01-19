@@ -35,7 +35,7 @@ class SpicyDatatable extends Component {
     const { itemsPerPage, currentPage, searchQuery } = this.state;
     const { columns, rows: originalRows } = this.props;
     const isFilterActive = searchQuery.length > 0;
-    const filteredRows = isFilterActive ? filterRows(originalRows, columns, searchQuery.toLocaleLowerCase()) : originalRows;
+    const filteredRows = isFilterActive ? this.state.filteredRows : originalRows;
     const maxOnPage = currentPage * itemsPerPage;
     const rows = filteredRows.slice((currentPage - 1) * itemsPerPage, maxOnPage);
     const total = isFilterActive ? filteredRows.length : originalRows.length;
@@ -98,11 +98,18 @@ class SpicyDatatable extends Component {
   }
 
   handleSearchQueryChange(e) {
+    const { columns, rows } = this.props;
     const { value } = e.target;
     const { tableKey } = this.props;
-    this.setState({ searchQuery: value, currentPage: 1 });
-    setSafely(miniCache, tableKey, 'searchQuery', value);
-    setSafely(miniCache, tableKey, 'currentPage', 1);
+    if (this.scheduleQueryChange) {
+      clearTimeout(this.scheduleQueryChange);
+    }
+    this.scheduleQueryChange = setTimeout(() => {
+      const filteredRows = value.length === 0 ? [] : filterRows(rows, columns, value);
+      this.setState({ filteredRows, searchQuery: value, currentPage: 1 });
+      setSafely(miniCache, tableKey, 'searchQuery', value);
+      setSafely(miniCache, tableKey, 'currentPage', 1);
+    }, 200);
   }
 
   handlePageSizeChange(e) {

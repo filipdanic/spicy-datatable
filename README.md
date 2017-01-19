@@ -2,13 +2,14 @@
 
 A React.js datatables without jQuery or other dependencies. Includes search and pagination.
 
-[🎉 Live demo.](https://build-nincjkfjsg.now.sh/)
+[DEMO: ReactJS Datatables in Action!](https://build-pkdluocqsu.now.sh)
 
 To get started with `spicy-datatable` in your project:
 
 ```
 npm i spicy-datatable --save
-# or yarn add spicy-datatable --save
+# or
+yarn add spicy-datatable --save
 ```
 
 Then:

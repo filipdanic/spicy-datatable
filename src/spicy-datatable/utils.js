@@ -89,13 +89,18 @@ export function paginationButtons(buttons, page, pages) {
  * @param {String} searchQuery
  * @returns {Array} filteredRows
  */
-export function filterRows(rows, columns, searchQuery) {
+export function filterRows(rows, columns, searchQuery = '') {
   const filteredRows = [];
+  if (searchQuery === null || searchQuery === '') {
+    return rows;
+  }
   rows.map(row => {
     columns.map(column => {
-      const rowValue = String(row[column.key]).toLowerCase();
-      if (rowValue.length >= searchQuery.length && rowValue.indexOf(searchQuery.toLowerCase()) >= 0) {
-        filteredRows.push(row);
+      if (row[column.key] !== undefined && row[column.key] !== null) {
+        const rowValue = String(row[column.key]).toLowerCase();
+        if (rowValue.length >= searchQuery.length && rowValue.indexOf(searchQuery.toLowerCase()) >= 0) {
+          filteredRows.push(row);
+        }
       }
     });
   });

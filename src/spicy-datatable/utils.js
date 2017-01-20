@@ -1,3 +1,5 @@
+export const defaultCache = { searchQuery: '' };
+
 /**
  * Safely get the miniCache object for a tableKey prop.
  * @param {Object} miniCache
@@ -8,7 +10,7 @@ export function getSafely(miniCache, tableKey) {
   if (miniCache[tableKey]) {
     return miniCache[tableKey];
   }
-  return { searchQuery: '' };
+  return defaultCache;
 }
 
 /**
@@ -27,24 +29,25 @@ export function setSafely(miniCache, tableKey, prop, val) {
 }
 
 /**
- * Taken from https://github.com/chengjianhua/react-datatable
+ * Modified from https://github.com/chengjianhua/react-datatable
  * @param {Number} len
  * @param {Number} start
  * @returns {Array} out
  */
 export function range(len, start) {
-  let end = 0;
+  let endPos = 0;
+  let startPos = 0;
   const out = [];
 
   if (start) {
-    end = start;
-    start = len;
+    endPos = start;
+    startPos = len;
   } else {
-    start = 0;
-    end = len;
+    startPos = 0;
+    endPos = len;
   }
 
-  for (let i = start; i < end; i++) {
+  for (let i = startPos; i < endPos; i++) {
     out.push(i);
   }
 
@@ -53,33 +56,33 @@ export function range(len, start) {
 
 /**
  * Taken from https://github.com/chengjianhua/react-datatable
- * @param {Number} buttons
- * @param {Number} page
- * @param {Number} pages
- * @returns {Array} numbers
+ * @param {Number} buttonsNum, total/max buttons to display
+ * @param {Number} currentPage
+ * @param {Number} totalPages
+ * @returns {Array} pagination
  */
-export function paginationButtons(buttons, page, pages) {
-  let numbers = [];
-  const half = Math.floor(buttons / 2);
+export function getPaginationButtons(buttonsNum, currentPage, totalPages) {
+  let pagination = [];
+  const half = Math.floor(buttonsNum / 2);
 
-  if (pages <= buttons) {
-    numbers = range(0, pages);
-  } else if (page <= half) {
-    numbers = range(0, buttons - 2);
-    numbers.push('ellipsis');
-    numbers.push(pages - 1);
-  } else if (page >= pages - 1 - half) {
-    numbers = range(pages - (buttons - 2), pages);
-    numbers.unshift('ellipsis'); // no unshift in ie6
-    numbers.unshift(0);
+  if (totalPages <= buttonsNum) {
+    pagination = range(0, totalPages);
+  } else if (currentPage <= half) {
+    pagination = range(0, buttonsNum - 2);
+    pagination.push('ellipsis');
+    pagination.push(totalPages - 1);
+  } else if (currentPage >= totalPages - 1 - half) {
+    pagination = range(totalPages - (buttonsNum - 2), totalPages);
+    pagination.unshift('ellipsis'); // no unshift in ie6
+    pagination.unshift(0);
   } else {
-    numbers = range(page - half + 2, page + half - 1);
-    numbers.push('ellipsis');
-    numbers.push(pages - 1);
-    numbers.unshift('ellipsis');
-    numbers.unshift(0);
+    pagination = range(currentPage - half + 2, currentPage + half - 1);
+    pagination.push('ellipsis');
+    pagination.push(totalPages - 1);
+    pagination.unshift('ellipsis');
+    pagination.unshift(0);
   }
-  return numbers;
+  return pagination;
 }
 
 /**

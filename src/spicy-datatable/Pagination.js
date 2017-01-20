@@ -2,13 +2,21 @@
  * @fileoverview Pagination.js
  * Component that renders all of the pagination items as a unordered list.
  * Lots of code reused from https://github.com/chengjianhua/react-datatable
- *
- * TODO #1 Refactor and rethink this implementation.
  */
 
 import React, { Component, PropTypes } from 'react';
-import { paginationButtons } from './utils.js';
+import { getPaginationButtons } from './utils.js';
 import style from './pagination.css';
+
+const maxButtons = 7;
+const navButton = (type, onClick) => (
+  <li
+    key={type}
+    className={`spicy-datatable-pagination-button ${type}`}
+    onClick={onClick}>
+    {type === 'previous' ? 'Back' : 'Next'}
+  </li>
+);
 
 class Pagination extends Component {
 
@@ -24,31 +32,28 @@ class Pagination extends Component {
     const length = Math.ceil(total / itemsPerPage);
     const previousPage = activePage === 1 ? 1 : activePage - 1;
     const nextPage = activePage === length ? length : activePage + 1;
-    let pageButtons = [];
-
-    pageButtons.push(
-      <li key="previous" className="spicy-datatable-pagination-button previous" onClick={this.handlePageButtonClick.bind(this, previousPage)}>
-        Back
-      </li>
-    );
-
-    const pageNumbers = paginationButtons(7, activePage, length).map((value, index) => {
+    let pageButtons = [
+      navButton('previous', this.handlePageButtonClick.bind(this, previousPage))
+    ];
+    const pageNumbers = getPaginationButtons(maxButtons, activePage, length).map((value, index) => {
       const classes = `spicy-datatable-pagination-button ${value + 1 === activePage ? 'active' : ''}`;
       return (
         value === 'ellipsis' ?
-          <li key={`ellipsis${index}`} className="spicy-datatable-pagination-button spicy-datatable-pagination-button-elipsis">...</li> :
-          <li key={value + 1} className={classes} onClick={this.handlePageButtonClick.bind(this, value + 1)}><span>{value + 1}</span></li>
+          <li
+            key={`ellipsis${index}`}
+            className="spicy-datatable-pagination-button spicy-datatable-pagination-button-elipsis">
+            …
+          </li> :
+          <li
+            key={value + 1}
+            className={classes}
+            onClick={this.handlePageButtonClick.bind(this, value + 1)}>
+            <span>{value + 1}</span>
+          </li>
       );
     });
-
     pageButtons = pageButtons.concat(pageNumbers);
-
-    pageButtons.push(
-      <li key="next" className="spicy-datatable-pagination-button next" onClick={this.handlePageButtonClick.bind(this, nextPage)}>
-        Next
-      </li>
-    );
-
+    pageButtons.push(navButton('next', this.handlePageButtonClick.bind(this, nextPage)));
     return pageButtons;
   }
 

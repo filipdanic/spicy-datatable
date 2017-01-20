@@ -16,7 +16,7 @@ class App extends Component {
           <p>A React.js based library for smart datatables.</p>
           <p>🛠  <a href="https://github.com/filipdanic/spicy-datatable">Get started!</a></p>
         </div>
-        <div className="App-intro" style={{ width: 550, padding: 20, marign: 20 }}>
+        <div className="App-intro" style={{ width: 650, padding: 20, marign: 20 }}>
           <SpicyDatatable tableKey="demo-table" columns={columns} rows={rows} />
         </div>
       </div>

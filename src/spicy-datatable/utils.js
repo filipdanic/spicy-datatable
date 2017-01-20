@@ -53,9 +53,9 @@ export function range(len, start) {
 
 /**
  * Taken from https://github.com/chengjianhua/react-datatable
- * @param {Array} buttons
+ * @param {Number} buttons
  * @param {Number} page
- * @param {Array} pages
+ * @param {Number} pages
  * @returns {Array} numbers
  */
 export function paginationButtons(buttons, page, pages) {

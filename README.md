@@ -110,7 +110,7 @@ Out of the box, `spicy-datatable` is bare-bones. Include this [CSS starter file]
 - Unit and performance tests.
 - Sortable columns.
 - CSV/PDF/Excel download
-- ~~Localization support~~
+- ~~Localization support~~ (available since v0.1.15)
 
 ## Contribute
 

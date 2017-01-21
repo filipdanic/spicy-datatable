@@ -1,6 +1,6 @@
 {
   "name": "spicy-datatable",
-  "description": "A React.js datatables without jQuery or other dependencies. Includes search and pagination.",
+  "description": "React.js datatables without jQuery. Smart react datatable that includes search, pagination and localization.",
   "homepage": "https://github.com/filipdanic/spicy-datatable",
   "bugs": {
     "url": "https://github.com/filipdanic/spicy-datatable/issues"
@@ -10,11 +10,13 @@
     "url": "git@github.com:filipdanic/spicy-datatable.git"
   },
   "keywords": [
+    "react datatable",
+    "react datatables",
+    "react table",
+    "react smart table",
     "datatable",
     "datatables",
-    "react datatable",
-    "pagination",
-    "react table"
+    "pagination"
   ],
   "author": {
     "name": "Filip Danić",

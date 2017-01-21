@@ -11,6 +11,9 @@ import style from './table.css';
 
 const miniCache = {};
 
+const defaultNoEntiresLabel = 'No entries to show.';
+const defaultEntryCountLabels = ['Showing', 'to', 'of', 'entries.'];
+
 class SpicyDatatable extends Component {
 
   static propTypes = {
@@ -19,21 +22,52 @@ class SpicyDatatable extends Component {
       key: PropTypes.string,
       label: PropTypes.string,
     })).isRequired,
-    rows: PropTypes.array,
+    rows: PropTypes.array.isRequired,
+    config: PropTypes.shape({
+      itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+      itemsPerPageLabel: PropTypes.string,
+      nextPageLabel: PropTypes.string,
+      previousPageLabel: PropTypes.string,
+      searchLabel: PropTypes.string,
+      searchPlaceholder: PropTypes.string,
+      noEntriesLabel: PropTypes.string,
+      entryCountLabels: PropTypes.arrayOf(PropTypes.string),
+    }),
   };
 
   constructor(props) {
     super(props);
+    const itemsPerPage =
+      getSafely(miniCache, props.tableKey).itemsPerPage ||
+      props.config && props.config.itemsPerPageOptions ?
+        props.config.itemsPerPageOptions[0] : 10;
     this.state = {
-      itemsPerPage: getSafely(miniCache, props.tableKey).itemsPerPage || 10,
+      itemsPerPage,
       currentPage: getSafely(miniCache, props.tableKey).currentPage || 1,
       searchQuery: getSafely(miniCache, props.tableKey).searchQuery || '',
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.tableKey !== this.props.tableKey) {
+      const itemsPerPage =
+        getSafely(miniCache, this.props.tableKey).itemsPerPage ||
+        this.props.config && this.props.config.itemsPerPageOptions ?
+          this.props.config.itemsPerPageOptions[0] : 10;
+     const currentPage = getSafely(miniCache, this.props.tableKey).currentPage || 1;
+      this.setState({ currentPage, itemsPerPage });
+    }
+  }
+
   render() {
+    const { columns, rows: originalRows, config = {} } = this.props;
     const { itemsPerPage, currentPage, searchQuery } = this.state;
-    const { columns, rows: originalRows } = this.props;
+    const {
+      itemsPerPageOptions, itemsPerPageLabel,
+      nextPageLabel, previousPageLabel,
+      searchLabel, searchPlaceholder,
+      noEntriesLabel, entryCountLabels
+    } = config;
     const isFilterActive = searchQuery.length > 0;
     const filteredRows = isFilterActive ? this.state.filteredRows : originalRows;
     const maxOnPage = currentPage * itemsPerPage;
@@ -41,12 +75,18 @@ class SpicyDatatable extends Component {
     const total = isFilterActive ? filteredRows.length : originalRows.length;
     const fromEntries = ((currentPage - 1) * itemsPerPage) + 1;
     const toEntries = maxOnPage > total ? total : maxOnPage;
+    const entriesLabels = entryCountLabels || defaultEntryCountLabels;
 
     return (
       <div>
         <DatatableOptions
+          itemsPerPage={itemsPerPage}
+          itemsPerPageOptions={itemsPerPageOptions}
+          itemsPerPageLabel={itemsPerPageLabel}
           onPageSizeChange={this.handlePageSizeChange.bind(this)}
           onSearch={this.handleSearchQueryChange.bind(this)}
+          searchLabel={searchLabel}
+          searchPlaceholder={searchPlaceholder}
         />
         <table className="spicy-datatable">
           <thead>
@@ -77,13 +117,17 @@ class SpicyDatatable extends Component {
         </table>
         <div className="spicy-datatable-counter">
           {total > 0 ?
-            <p>Showing {fromEntries} to {toEntries} of {total} entries.</p> : <p>No entries to show.</p>}
+          <p>
+            {entriesLabels[0]} {fromEntries} {entriesLabels[1]} {toEntries} {entriesLabels[2]} {total} {entriesLabels[3]}
+          </p> : <p>{noEntriesLabel || defaultNoEntiresLabel}</p>}
         </div>
         <Pagination
           onPage={this.handlePagination.bind(this)}
           itemsPerPage={itemsPerPage}
           total={total}
           activePage={currentPage}
+          nextPageLabel={nextPageLabel}
+          previousPageLabel={previousPageLabel}
         />
       </div>
     );

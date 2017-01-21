@@ -9,31 +9,36 @@ import { getPaginationButtons } from './utils.js';
 import style from './pagination.css';
 
 const maxButtons = 7;
-const navButton = (type, onClick) => (
+const defaultNextLabel = 'Next';
+const defaultPreviousLabel = 'Back';
+
+const navButton = (type, onClick, label) => (
   <li
     key={type}
     className={`spicy-datatable-pagination-button ${type}`}
     onClick={onClick}>
-    {type === 'previous' ? 'Back' : 'Next'}
+    {label}
   </li>
 );
 
 class Pagination extends Component {
 
   static propTypes = {
-    onPage: PropTypes.func,
-    itemsPerPage: PropTypes.number,
-    total: PropTypes.number,
-    activePage: PropTypes.number,
+    onPage: PropTypes.func.isRequired,
+    itemsPerPage: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+    activePage: PropTypes.number.isRequired,
+    nextPageLabel: PropTypes.string,
+    previousPageLabel: PropTypes.string,
   };
 
   renderPagination() {
-    const { itemsPerPage, total, activePage } = this.props;
+    const { itemsPerPage, total, activePage, nextPageLabel, previousPageLabel } = this.props;
     const length = Math.ceil(total / itemsPerPage);
     const previousPage = activePage === 1 ? 1 : activePage - 1;
     const nextPage = activePage === length ? length : activePage + 1;
     let pageButtons = [
-      navButton('previous', this.handlePageButtonClick.bind(this, previousPage))
+      navButton('previous', this.handlePageButtonClick.bind(this, previousPage), previousPageLabel || defaultPreviousLabel)
     ];
     const pageNumbers = getPaginationButtons(maxButtons, activePage, length).map((value, index) => {
       const classes = `spicy-datatable-pagination-button ${value + 1 === activePage ? 'active' : ''}`;
@@ -53,7 +58,7 @@ class Pagination extends Component {
       );
     });
     pageButtons = pageButtons.concat(pageNumbers);
-    pageButtons.push(navButton('next', this.handlePageButtonClick.bind(this, nextPage)));
+    pageButtons.push(navButton('next', this.handlePageButtonClick.bind(this, nextPage), nextPageLabel || defaultNextLabel));
     return pageButtons;
   }
 

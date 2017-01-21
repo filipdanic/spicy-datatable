@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 80px;
+  height: 48px;
 }
 
 .App-header {
@@ -14,4 +14,25 @@
 
 .App-intro {
   margin: 0 auto;
+}
+
+.demoBtn {
+  background: none;
+  border: 3px solid white;
+  padding: 5px 15px;
+  cursor: pointer;
+  color: #222;
+  transition: 0.25s all;
+}
+
+.demoBtn:disabled {
+  opacity: 0.5;
+}
+
+.demoBtn:hover {
+  border: 3px solid #222;
+  padding: 5px 15px;
+  cursor: pointer;
+  color: white;
+  background: #222;
 }

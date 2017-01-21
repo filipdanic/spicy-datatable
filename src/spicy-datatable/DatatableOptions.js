@@ -2,37 +2,48 @@
  * @fileoverview DatatableOptions.js
  * A component used to display the select field for number of rows per page as well as a search field.
  * Accepts two callback functions: onPageSizeChange() and onSearch().
- * TODO #1 Split this into two components
- * TODO #2 Make the page size options costumizable and leave [10, 25, 50, 100] as defaults.
+ * TODO: Split this into two components
  */
 import React, { Component, PropTypes } from 'react';
 import style from './datatableoptions.css';
 
+const defaultPageSizeOptions = [10, 25, 50, 100];
+const defaultItemsPerPageLabel = 'Entries per page:';
+const defaultSearchLabel = 'Search:';
+const defaultSearchPlaceholder = 'Type to search…';
+
 class DatatableOptions extends Component {
 
   static propTypes = {
-    onSearch: PropTypes.func,
-    onPageSizeChange: PropTypes.func,
+    itemsPerPage: PropTypes.number.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    onPageSizeChange: PropTypes.func.isRequired,
+    itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+    itemsPerPageLabel: PropTypes.string,
+    searchLabel: PropTypes.string,
+    searchPlaceholder: PropTypes.string,
   };
 
   render() {
-    const { onSearch, onPageSizeChange } = this.props;
+    const { itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onSearch, onPageSizeChange, searchLabel, searchPlaceholder} = this.props;
+    const selectOptions = itemsPerPageOptions || defaultPageSizeOptions;
     return (
       <div className="spicy-datatableoptions-wrapper">
         <div className="spicy-datatableoptions-sizepicker">
-          Show
-          <select onChange={onPageSizeChange} className="spicy-datatableoptions-sizepicker--selectfield">
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
+          {itemsPerPageLabel || defaultItemsPerPageLabel}
+          <select onChange={onPageSizeChange} value={itemsPerPage} className="spicy-datatableoptions-sizepicker--selectfield">
+            {selectOptions.map((s, i) => <option key={`select-${s}-{i}`} value={s}>{s}</option>)}
           </select>
-          entries.
         </div>
         <div className="spicy-datatableoptions-search">
           <label className="spicy-datatableoptions-search--label">
-            Search:
-            <input className="spicy-datatableoptions-search--input" type="text" onChange={onSearch} placeholder="Type to search…" />
+            {searchLabel || defaultSearchLabel}
+            <input
+              className="spicy-datatableoptions-search--input"
+              type="text"
+              onChange={onSearch}
+              placeholder={searchPlaceholder || defaultSearchPlaceholder}
+            />
           </label>
         </div>
       </div>

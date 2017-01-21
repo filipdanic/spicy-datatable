@@ -1,5 +1,18 @@
 /* eslint-disable */
 
+// example of how to customize the labels in the datatable.
+// this config will translate the labels to the Serbian language, used for demo #2
+const customOptions = {
+  itemsPerPageOptions: [5, 10, 15, 20, 25, 30],
+  itemsPerPageLabel: 'Broj unosa po strani:',
+  nextPageLabel: '>',
+  previousPageLabel: '<',
+  searchLabel: 'Pretaga: ',
+  searchPlaceholder: 'Unesite tekst…',
+  noEntriesLabel: 'Nema unosa.',
+  entryCountLabels: ['Prikazano: ', 'do', 'od', 'unosa.'],
+};
+
 const columns = [{
     key: 'id',
     label: '#',
@@ -25,4 +38,5 @@ rows[3].isActive = true;
 export default {
   columns,
   rows,
+  customOptions,
 };

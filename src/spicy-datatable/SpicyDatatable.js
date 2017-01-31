@@ -32,6 +32,7 @@ class SpicyDatatable extends Component {
       searchPlaceholder: PropTypes.string,
       noEntriesLabel: PropTypes.string,
       entryCountLabels: PropTypes.arrayOf(PropTypes.string),
+      customFilter: PropTypes.func
     }),
   };
 
@@ -66,7 +67,8 @@ class SpicyDatatable extends Component {
       itemsPerPageOptions, itemsPerPageLabel,
       nextPageLabel, previousPageLabel,
       searchLabel, searchPlaceholder,
-      noEntriesLabel, entryCountLabels
+      noEntriesLabel, entryCountLabels,
+      customFilter
     } = config;
     const isFilterActive = searchQuery.length > 0;
     const filteredRows = isFilterActive ? this.state.filteredRows : originalRows;
@@ -142,14 +144,16 @@ class SpicyDatatable extends Component {
   }
 
   handleSearchQueryChange(e) {
-    const { columns, rows } = this.props;
+    const { columns, rows, config = {} } = this.props;
     const { value } = e.target;
     const { tableKey } = this.props;
+    const { customFilter } = config
     if (this.scheduleQueryChange) {
       clearTimeout(this.scheduleQueryChange);
     }
     this.scheduleQueryChange = setTimeout(() => {
-      const filteredRows = value.length === 0 ? [] : filterRows(rows, columns, value);
+      const filterContent = customFilter ? customFilter : filterRows
+      const filteredRows = ( value.length === 0 ? [] : filterContent(rows, columns, value)) || [] // Avoid code from breaking if the custom filter has not been implemented correctly
       this.setState({ filteredRows, searchQuery: value, currentPage: 1 });
       setSafely(miniCache, tableKey, 'searchQuery', value);
       setSafely(miniCache, tableKey, 'currentPage', 1);

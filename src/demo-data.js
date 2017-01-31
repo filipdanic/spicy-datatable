@@ -2,6 +2,10 @@
 
 // example of how to customize the labels in the datatable.
 // this config will translate the labels to the Serbian language, used for demo #2
+const customFilter = (rows, columns, searchQuery='') => {
+    console.log('Implement Custom filter')
+}
+
 const customOptions = {
   itemsPerPageOptions: [5, 10, 15, 20, 25, 30],
   itemsPerPageLabel: 'Broj unosa po strani:',
@@ -11,6 +15,7 @@ const customOptions = {
   searchPlaceholder: 'Unesite tekst…',
   noEntriesLabel: 'Nema unosa.',
   entryCountLabels: ['Prikazano: ', 'do', 'od', 'unosa.'],
+  customFilter
 };
 
 const columns = [{

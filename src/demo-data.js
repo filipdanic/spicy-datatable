@@ -1,9 +1,13 @@
 /* eslint-disable */
 
-// example of how to customize the labels in the datatable.
-// this config will translate the labels to the Serbian language, used for demo #2
-const customFilter = (rows, columns, searchQuery='') => {
-    console.log('Implement Custom filter')
+/**
+ * customOptions and customFilter are used for #demo 2
+ * they serve as an example of how to customize the options and labels in the datatable
+ */
+
+const customFilter = (rows, columns, searchQuery = '') => {
+  // custom logic filter –> looks for match of the searchQuery in the name field only
+  return rows.filter(row => row.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1);
 }
 
 const customOptions = {

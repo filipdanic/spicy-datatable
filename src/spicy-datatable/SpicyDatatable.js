@@ -152,8 +152,8 @@ class SpicyDatatable extends Component {
       clearTimeout(this.scheduleQueryChange);
     }
     this.scheduleQueryChange = setTimeout(() => {
-      const filterContent = customFilter ? customFilter : filterRows
-      const filteredRows = ( value.length === 0 ? [] : filterContent(rows, columns, value)) || [] // Avoid code from breaking if the custom filter has not been implemented correctly
+      const filterFunction = customFilter ? customFilter : filterRows;
+      const filteredRows = (value.length === 0 ? [] : filterFunction(rows, columns, value)) || [];
       this.setState({ filteredRows, searchQuery: value, currentPage: 1 });
       setSafely(miniCache, tableKey, 'searchQuery', value);
       setSafely(miniCache, tableKey, 'currentPage', 1);

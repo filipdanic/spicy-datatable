@@ -5,6 +5,7 @@ node_modules
 
 # testing
 coverage
+lib/__tests__
 
 # production
 build

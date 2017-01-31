@@ -4,7 +4,7 @@ A React.js datatables without jQuery. Smart datatable that includes search, pagi
 
 [DEMO: ReactJS Datatables in Action!](https://build-ewckjquewv.now.sh)
 
-Jump to: [installing](#install), [required props](#required-prop-docs), [costumization (e.g. localization) via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
+Jump to: [installing](#install), [required props](#required-prop-docs), [customization (e.g. localization) via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
 
 ## Install
 
@@ -41,9 +41,9 @@ You can also clone this repo which includes a full demo with `create-react-app` 
 
 ## Required Prop Docs
 
-The `tableKey` is a String used to identify the table dataset. It is required.
+The **`tableKey`** is a String used to identify the table dataset. It is required.
 
-The `columns` prop is an array of colum objects which have a key and label. Like this:
+The **`columns`** prop is an array of colum objects which have a key and label. Like this:
 
 ```javascript
 const columns = [{
@@ -59,7 +59,7 @@ const columns = [{
 ];
 ```
 
-The `rows` prop is an array of objects that have the `key-value` pairs described in our columns. For example:
+The **`rows`** prop is an array of objects that have the `key-value` pairs described in our columns. For example:
 
 ```javascript
 
@@ -89,14 +89,15 @@ You can pass a `config` prop the `<SpicyDatatable />` component to change all th
 
 This is great if you want to change the text or localize your component. Here’s an overview of all the options you can specify via the `config` object:
 
-- `itemsPerPageOptions`: an `Array` of `Number`s, defaults to `[10, 25, 50, 100]`,
-- `itemsPerPageLabel`: a `String`, defaults to `Entries per page:`
-- `nextPageLabel`: a `String`, defaults to `Next`
-- `previousPageLabel`: a `String`, defaults to `Back`
-- `searchLabel`: a `String`, defaults to `Search:`
-- `searchPlaceholder`: a `String`, default to `Type to search…`
-- `noEntriesLabel`: a `String`, defaults to `No entries to show.`
-- `entryCountLabels`: an `Array` of `String`s, defaults to `['Showing', 'to', 'of', 'entries.']`. Prints out _Showing 10 to 20 of 300 entires._ at the bottom of the table.
+- **`itemsPerPageOptions`**: an `Array` of `Number`s, defaults to `[10, 25, 50, 100]`,
+- **`itemsPerPageLabel`**: a `String`, defaults to `Entries per page:`
+- **`nextPageLabel`**: a `String`, defaults to `Next`
+- **`previousPageLabel`**: a `String`, defaults to `Back`
+- **`searchLabel`**: a `String`, defaults to `Search:`
+- **`searchPlaceholder`**: a `String`, default to `Type to search…`
+- **`noEntriesLabel`**: a `String`, defaults to `No entries to show.`
+- **`entryCountLabels`**: an `Array` of `String`s, defaults to `['Showing', 'to', 'of', 'entries.']`. Prints out _Showing 10 to 20 of 300 entires._ at the bottom of the table.
+- **`customFilter`**: a `Function()` that can be used to override the default search logic. It takes three params: `(rows, columns, searchQuery)`.
 
 See the [customOptions object in the demo data](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) for an example of how it is used in example #2 on the demo page.
 
@@ -106,7 +107,7 @@ Out of the box, `spicy-datatable` is bare-bones. Include this [CSS starter file]
 
 ## Roadmap
 
-- More control over pagination and search (and a better performing search!)
+- More control over pagination ~~and search (and a better performing search!)~~
 - Unit and performance tests.
 - Sortable columns.
 - CSV/PDF/Excel download
@@ -121,5 +122,10 @@ There are many ways to contribute. For example:
 - Have a feature request? Want the roadmap to hurry up? Open a feature request [via the issues tab.](https://github.com/filipdanic/spicy-datatable/issues/new)
 - Fixed a problem or added a feature on your fork? Send a PR to make it part of the main distribution.
 - The docs could be better? Found a typo? Submit a PR!
+
+## Contributors
+
+- [@filipdanic](https://github.com/filipdanic/)
+- [@sahiljain112](https://github.com/sahiljain112)
 
 Need help with your *first PR* in OSS? Open an issue and we will find something simple and cool for you!

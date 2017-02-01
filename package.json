@@ -47,8 +47,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "compile": "babel --presets es2015,stage-0,react --plugins transform-css-import-to-string -d lib/ src/spicy-datatable",
-    "prepublish": "npm run compile",
+    "prepublish": "npm run build-module",
     "build-module": "webpack --config webpack.prod.config.js --colors --display-error-details --progress"
   }
 }

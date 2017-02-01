@@ -13,7 +13,25 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'lib'),
-    filename: 'index.js'
+    filename: 'index.js',
+    libraryTarget: "umd",
+    library: "SpicyDatatable"
+  },
+  externals: {
+    "react": {
+      "commonjs": "react",
+      "commonjs2": "react",
+      "amd": "react",
+      // React dep should be available as window.React, not window.react
+      "root": "React"
+    },
+    "react-dom": {
+      "commonjs": "react-dom",
+      "commonjs2": "react-dom",
+      "amd": "react-dom",
+      // React dep should be available as window.React, not window.react
+      "root": "ReactDOM"
+    }
   },
   plugins: [
     new ExtractTextPlugin('spicy-datatable.css'),

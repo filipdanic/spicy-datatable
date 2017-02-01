@@ -14,7 +14,7 @@ const miniCache = {};
 const defaultNoEntiresLabel = 'No entries to show.';
 const defaultEntryCountLabels = ['Showing', 'to', 'of', 'entries.'];
 
-class SpicyDatatable extends Component {
+export default class SpicyDatatable extends Component {
 
   static propTypes = {
     tableKey: PropTypes.string.isRequired,
@@ -168,5 +168,3 @@ class SpicyDatatable extends Component {
     setSafely(miniCache, tableKey, 'currentPage', 1);
   }
 }
-
-export default SpicyDatatable;

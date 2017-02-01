@@ -23,7 +23,7 @@
     "email": "filipdanic7@gmail.com",
     "url": "http://danicfilip.com"
   },
-  "main": "lib/SpicyDatatable.js",
+  "main": "lib/index.js",
   "version": "0.1.17",
   "license": "MIT",
   "devDependencies": {
@@ -34,8 +34,10 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "enzyme": "^2.7.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "react-addons-test-utils": "^15.4.2",
-    "react-scripts": "0.8.4"
+    "react-scripts": "0.8.4",
+    "webpack": "^1.14.0"
   },
   "dependencies": {
     "react": "^15.4.1",
@@ -46,6 +48,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "compile": "babel --presets es2015,stage-0,react --plugins transform-css-import-to-string -d lib/ src/spicy-datatable",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
+    "build-module": "webpack --config webpack.prod.config.js --colors --display-error-details --progress"
   }
 }

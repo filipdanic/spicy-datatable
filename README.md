@@ -16,16 +16,14 @@ npm i spicy-datatable --save
 yarn add spicy-datatable --save
 ```
 
-Then:
+Then, in your code:
 
 ```javascript
 
 import SpicyDatatable from 'spicy-datatable';
-
-// somewhere:
-
+// …somewhere:
 <SpicyDatatable
-  tableKey={key}
+  tableKey={key} // see below for prop documentation
   columns={columns}
   rows={rows}
   config={config} // optional, overrides all default settings/labels
@@ -33,7 +31,7 @@ import SpicyDatatable from 'spicy-datatable';
 
 ```
 
-Now you are all set to enjoy some ReactJS datatables in your project! 🙌
+Now you are all set to enjoy some ReactJS datatables in your project! No jQuery or other heavy dependencies. 🙌
 
 Look at the [demo data file](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) for examples of how the `rows` and `columns` props look.
 
@@ -41,13 +39,13 @@ You can also clone this repo which includes a full demo with `create-react-app` 
 
 ## Required Prop Docs
 
-The **`tableKey`** is a String used to identify the table dataset. It is required.
+The **`tableKey`** is a `String` used to identify the table dataset. It is required.
 
 The **`columns`** prop is an array of colum objects which have a key and label. Like this:
 
 ```javascript
 const columns = [{
-    key: 'id',
+    key: 'userId',
     label: '#',
   }, {
     key: 'name',
@@ -59,20 +57,20 @@ const columns = [{
 ];
 ```
 
-The **`rows`** prop is an array of objects that have the `key-value` pairs described in our columns. For example:
+The **`rows`** prop is an array of objects that have the `key: value` pairs described in our columns. For example:
 
 ```javascript
 
 const rows = [
   {
-    id: 1,
+    userId: 1,
     name:  'Sansa Stark',
     email: 'sansa@winterfell.gov',
     onClickHandler: someFunction,
     isActive: true,
   },
   {
-    id: 2,
+    userId: 2,
     name: 'Jon Snow',
     email: 'jon@nightswatch.gov',
     onClickHandler: someFunction,
@@ -81,7 +79,8 @@ const rows = [
 ];
 ```
 
-The key `onClickHandler` is optional. It will attach an `onClick()` callback on the row. The `isActive` prop is also optional. The row that has this prop set to true will have a special class applied (CSS styling purposes).
+- The **`onClickHandler`** is optional. It will attach an `onClick()` callback on the row.
+- The **`isActive`** prop is also optional. The row that has this prop set to true will have a special class applied (CSS styling purposes.)
 
 ## Config prop
 
@@ -107,11 +106,10 @@ Out of the box, `spicy-datatable` is bare-bones. Include this [CSS starter file]
 
 ## Roadmap
 
-- More control over pagination ~~and search (and a better performing search!)~~
+- (Optional) Bootstrap styles!
 - Unit and performance tests.
 - Sortable columns.
 - CSV/PDF/Excel download
-- ~~Localization support~~ (available since v0.1.15)
 
 ## Contribute
 
@@ -125,7 +123,7 @@ There are many ways to contribute. For example:
 
 ## Contributors
 
+Need help with your **first PR** in OSS? Open an issue and we will find something simple and cool for you!
+
 - [@filipdanic](https://github.com/filipdanic/)
 - [@sahiljain112](https://github.com/sahiljain112)
-
-Need help with your *first PR* in OSS? Open an issue and we will find something simple and cool for you!

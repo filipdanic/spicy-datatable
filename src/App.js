@@ -26,6 +26,10 @@ class App extends Component {
             <button className="demoBtn" disabled={demo === 1} onClick={this.changeDemo.bind(this, 1)}>General demo</button>
             <button className="demoBtn" style={{ marginLeft: 10 }} disabled={demo === 2} onClick={this.changeDemo.bind(this, 2)}>Custom options demo</button>
           </div>
+          <div style={{fontSize: 10}}>
+            {demo === 1 ?
+              <p>Demo #1: Default behaviour. Check the console log.</p> : <p>Demo #2: Customized search function, labels, display etc.</p>}
+          </div>
         </div>
         <div className="App-intro" style={{ width: 650, padding: 20, marign: 20 }}>
           {demo === 1 ?

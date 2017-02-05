@@ -2,7 +2,7 @@
 
 A React.js datatables without jQuery. Smart datatable that includes search, pagination, and localization support.
 
-[DEMO: ReactJS Datatables in Action!](https://build-velabkocez.now.sh)
+[DEMO: ReactJS Datatables in Action!](https://build-gjktjxoelm.now.sh)
 
 Jump to: [installing](#install), [required props](#required-prop-docs), [customization (e.g. localization) via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
 

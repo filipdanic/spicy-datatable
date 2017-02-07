@@ -47,6 +47,11 @@ export default class SpicyDatatable extends Component {
       currentPage: getSafely(miniCache, props.tableKey).currentPage || 1,
       searchQuery: getSafely(miniCache, props.tableKey).searchQuery || '',
     };
+    if (this.state.searchQuery.length > 0) {
+      const filterFunction = props.customFilter ? props.customFilter : filterRows;
+      const filteredRows = filterFunction(props.rows, props.columns, this.state.searchQuery) || [];
+      this.state.filteredRows = filteredRows;
+    }
   }
 
   componentWillUnmount() {

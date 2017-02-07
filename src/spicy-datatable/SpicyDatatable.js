@@ -62,7 +62,7 @@ export default class SpicyDatatable extends Component {
 
   render() {
     const { columns, rows: originalRows, config = {} } = this.props;
-    const { itemsPerPage, currentPage, searchQuery } = this.state;
+    const { itemsPerPage, currentPage, searchQuery, filteredRows: stateFilteredRows } = this.state || {};
     const {
       itemsPerPageOptions, itemsPerPageLabel,
       nextPageLabel, previousPageLabel,
@@ -71,9 +71,9 @@ export default class SpicyDatatable extends Component {
       customFilter
     } = config;
     const isFilterActive = searchQuery.length > 0;
-    const filteredRows = isFilterActive ? this.state.filteredRows : originalRows;
+    const filteredRows = isFilterActive ? stateFilteredRows : originalRows;
     const maxOnPage = currentPage * itemsPerPage;
-    const rows = filteredRows.slice((currentPage - 1) * itemsPerPage, maxOnPage);
+    const rows = filteredRows && filteredRows.length > 0 ? filteredRows.slice((currentPage - 1) * itemsPerPage, maxOnPage) : [];
     const total = isFilterActive ? filteredRows.length : originalRows.length;
     const fromEntries = ((currentPage - 1) * itemsPerPage) + 1;
     const toEntries = maxOnPage > total ? total : maxOnPage;

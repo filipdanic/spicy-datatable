@@ -91,6 +91,7 @@ export default class SpicyDatatable extends Component {
           itemsPerPageLabel={itemsPerPageLabel}
           onPageSizeChange={this.handlePageSizeChange.bind(this)}
           onSearch={this.handleSearchQueryChange.bind(this)}
+          searchValue={searchQuery}
           searchLabel={searchLabel}
           searchPlaceholder={searchPlaceholder}
         />

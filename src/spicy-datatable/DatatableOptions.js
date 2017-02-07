@@ -16,6 +16,7 @@ class DatatableOptions extends Component {
 
   static propTypes = {
     itemsPerPage: PropTypes.number.isRequired,
+    searchValue: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired,
     onPageSizeChange: PropTypes.func.isRequired,
     itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
@@ -25,7 +26,7 @@ class DatatableOptions extends Component {
   };
 
   render() {
-    const { itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onSearch, onPageSizeChange, searchLabel, searchPlaceholder} = this.props;
+    const { itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onSearch, searchValue, onPageSizeChange, searchLabel, searchPlaceholder} = this.props;
     const selectOptions = itemsPerPageOptions || defaultPageSizeOptions;
     return (
       <div className="spicy-datatableoptions-wrapper">
@@ -42,6 +43,7 @@ class DatatableOptions extends Component {
               className="spicy-datatableoptions-search--input"
               type="text"
               onChange={onSearch}
+              defaultValue={searchValue}
               placeholder={searchPlaceholder || defaultSearchPlaceholder}
             />
           </label>

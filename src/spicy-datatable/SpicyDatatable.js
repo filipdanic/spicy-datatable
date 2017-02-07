@@ -49,6 +49,10 @@ export default class SpicyDatatable extends Component {
     };
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.scheduleQueryChange);
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.tableKey !== this.props.tableKey) {
       const itemsPerPage =
@@ -61,8 +65,8 @@ export default class SpicyDatatable extends Component {
   }
 
   render() {
-    const { columns, rows: originalRows, config = {} } = this.props;
-    const { itemsPerPage, currentPage, searchQuery, filteredRows: stateFilteredRows } = this.state || {};
+    const { columns, rows: originalRows = [], config = {} } = this.props;
+    const { itemsPerPage, currentPage, searchQuery = '', filteredRows: stateFilteredRows = []} = this.state || {};
     const {
       itemsPerPageOptions, itemsPerPageLabel,
       nextPageLabel, previousPageLabel,

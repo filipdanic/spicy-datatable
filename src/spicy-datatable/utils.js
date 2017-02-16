@@ -98,11 +98,12 @@ export function filterRows(rows, columns, searchQuery = '') {
     return rows;
   }
   rows.map(row => {
-    columns.map(column => {
+    columns.some(column => {
       if (row[column.key] !== undefined && row[column.key] !== null) {
         const rowValue = String(row[column.key]).toLowerCase();
         if (rowValue.length >= searchQuery.length && rowValue.indexOf(searchQuery.toLowerCase()) >= 0) {
           filteredRows.push(row);
+          return true;
         }
       }
     });

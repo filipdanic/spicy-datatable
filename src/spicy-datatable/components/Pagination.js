@@ -5,8 +5,8 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { getPaginationButtons } from './utils.js';
-import style from './pagination.css';
+import { getPaginationButtons } from './utilities.js';
+import style from './Pagination.css';
 
 const maxButtons = 7;
 const defaultNextLabel = 'Next';

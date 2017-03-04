@@ -5,7 +5,7 @@
  * TODO: Split this into two components
  */
 import React, { Component, PropTypes } from 'react';
-import style from './datatableoptions.css';
+import style from './DatatableOptions.css';
 
 const defaultPageSizeOptions = [10, 25, 50, 100];
 const defaultItemsPerPageLabel = 'Entries per page:';

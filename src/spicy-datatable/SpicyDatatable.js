@@ -4,9 +4,9 @@
  * For complete documentation of how to use this, refer to the `README.md` or check out the examples in `App.ja`
  */
 import React, { Component, PropTypes } from 'react';
-import Pagination from './Pagination.js';
-import DatatableOptions from './DatatableOptions.js';
-import { filterRows, getSafely, setSafely } from './utils.js';
+import Pagination from './components/Pagination.js';
+import DatatableOptions from './components/DatatableOptions.js';
+import { filterRows, getSafely, setSafely } from './helpers';
 import style from './table.css';
 
 const miniCache = {};

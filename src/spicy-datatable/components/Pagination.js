@@ -5,14 +5,11 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import PaginationNavButton from './PaginationNavButton.js';
 import { getPaginationButtons } from './utilities.js';
 import style from './Pagination.css';
 import { PaginationPropTypes } from '../PropTypes.js';
-import PaginationNavButton from './PaginationNavButton.js';
-
-const maxButtons = 7;
-const defaultNextLabel = 'Next';
-const defaultPreviousLabel = 'Back';
+import { PaginationDefaults as defaults } from '../defaults.js';
 
 class Pagination extends Component {
 
@@ -24,9 +21,9 @@ class Pagination extends Component {
     const previousPage = activePage === 1 ? 1 : activePage - 1;
     const nextPage = activePage === length ? length : activePage + 1;
     let pageButtons = [
-      PaginationNavButton('previous', this.handlePageButtonClick.bind(this, previousPage), previousPageLabel || defaultPreviousLabel)
+      PaginationNavButton('previous', this.handlePageButtonClick.bind(this, previousPage), previousPageLabel || defaults.previousLabel)
     ];
-    const pageNumbers = getPaginationButtons(maxButtons, activePage, length).map((value, index) => {
+    const pageNumbers = getPaginationButtons(defaults.maxButtons, activePage, length).map((value, index) => {
       const classes = `spicy-datatable-pagination-button ${value + 1 === activePage ? 'active' : ''}`;
       return (
         value === 'ellipsis' ?
@@ -44,7 +41,7 @@ class Pagination extends Component {
       );
     });
     pageButtons = pageButtons.concat(pageNumbers);
-    pageButtons.push(PaginationNavButton('next', this.handlePageButtonClick.bind(this, nextPage), nextPageLabel || defaultNextLabel));
+    pageButtons.push(PaginationNavButton('next', this.handlePageButtonClick.bind(this, nextPage), nextPageLabel || defaults.nextLabel));
     return pageButtons;
   }
 

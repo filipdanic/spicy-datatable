@@ -8,11 +8,7 @@ import style from './DatatableOptions.css';
 import DatatablePageSizePicker from './DatatablePageSizePicker.js';
 import DatatableSearchBar from './DatatableSearchBar.js';
 import { DatatableOptionsPropTypes } from '../PropTypes.js';
-
-const defaultPageSizeOptions = [10, 25, 50, 100];
-const defaultItemsPerPageLabel = 'Entries per page:';
-const defaultSearchLabel = 'Search:';
-const defaultSearchPlaceholder = 'Type to search…';
+import { DatatableOptionsDefaults as defaults } from '../defaults.js';
 
 class DatatableOptions extends Component {
 
@@ -20,20 +16,20 @@ class DatatableOptions extends Component {
 
   render() {
     const { itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onSearch, searchValue, onPageSizeChange, searchLabel, searchPlaceholder} = this.props;
-    const selectOptions = itemsPerPageOptions || defaultPageSizeOptions;
+    const selectOptions = itemsPerPageOptions || defaults.pageSizeOptions;
     return (
       <div className="spicy-datatableoptions-wrapper">
         {DatatablePageSizePicker({
-          label: itemsPerPageLabel || defaultItemsPerPageLabel,
+          label: itemsPerPageLabel || defaults.itemsPerPageLabel,
           onChange: onPageSizeChange,
           value: itemsPerPage,
           options: selectOptions,
         })}
         {DatatableSearchBar({
-          label: searchLabel || defaultSearchLabel,
+          label: searchLabel || defaults.searchLabel,
           value: searchValue,
           onChange: onSearch,
-          placeholder: searchPlaceholder || defaultSearchPlaceholder,
+          placeholder: searchPlaceholder || defaults.searchPlaceholder,
         })}
       </div>
     );

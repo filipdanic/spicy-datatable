@@ -8,12 +8,10 @@ import DatatableOptions from './components/DatatableOptions.js';
 import Pagination from './components/Pagination.js';
 import { SpicyDatatablePropTypes } from './PropTypes.js';
 import { filterRows, getSafely, setSafely } from './helpers';
+import { SpicyDatatableDefaults as defaults } from './defaults.js';
 import style from './table.css';
 
 const miniCache = {};
-
-const defaultNoEntiresLabel = 'No entries to show.';
-const defaultEntryCountLabels = ['Showing', 'to', 'of', 'entries.'];
 
 export default class SpicyDatatable extends Component {
 
@@ -69,7 +67,7 @@ export default class SpicyDatatable extends Component {
     const total = isFilterActive ? filteredRows.length : originalRows.length;
     const fromEntries = ((currentPage - 1) * itemsPerPage) + 1;
     const toEntries = maxOnPage > total ? total : maxOnPage;
-    const entriesLabels = entryCountLabels || defaultEntryCountLabels;
+    const entriesLabels = entryCountLabels || defaults.entryCountLabels;
 
     return (
       <div>
@@ -114,7 +112,7 @@ export default class SpicyDatatable extends Component {
           {total > 0 ?
           <p>
             {entriesLabels[0]} {fromEntries} {entriesLabels[1]} {toEntries} {entriesLabels[2]} {total} {entriesLabels[3]}
-          </p> : <p>{noEntriesLabel || defaultNoEntiresLabel}</p>}
+          </p> : <p>{noEntriesLabel || defaults.noEntiresLabel}</p>}
         </div>
         <Pagination
           onPage={this.handlePagination.bind(this)}

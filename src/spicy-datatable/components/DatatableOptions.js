@@ -2,10 +2,11 @@
  * @fileoverview DatatableOptions.js
  * A component used to display the select field for number of rows per page as well as a search field.
  * Accepts two callback functions: onPageSizeChange() and onSearch().
- * TODO: Split this into two components
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import style from './DatatableOptions.css';
+import DatatablePageSizePicker from './DatatablePageSizePicker.js';
+import DatatableSearchBar from './DatatableSearchBar.js';
 import { DatatableOptionsPropTypes } from '../PropTypes.js';
 
 const defaultPageSizeOptions = [10, 25, 50, 100];
@@ -22,24 +23,18 @@ class DatatableOptions extends Component {
     const selectOptions = itemsPerPageOptions || defaultPageSizeOptions;
     return (
       <div className="spicy-datatableoptions-wrapper">
-        <div className="spicy-datatableoptions-sizepicker">
-          {itemsPerPageLabel || defaultItemsPerPageLabel}
-          <select onChange={onPageSizeChange} value={itemsPerPage} className="spicy-datatableoptions-sizepicker--selectfield">
-            {selectOptions.map((s, i) => <option key={`select-${s}-{i}`} value={s}>{s}</option>)}
-          </select>
-        </div>
-        <div className="spicy-datatableoptions-search">
-          <label className="spicy-datatableoptions-search--label">
-            {searchLabel || defaultSearchLabel}
-            <input
-              className="spicy-datatableoptions-search--input"
-              type="text"
-              onChange={onSearch}
-              defaultValue={searchValue}
-              placeholder={searchPlaceholder || defaultSearchPlaceholder}
-            />
-          </label>
-        </div>
+        {DatatablePageSizePicker({
+          label: itemsPerPageLabel || defaultItemsPerPageLabel,
+          onChange: onPageSizeChange,
+          value: itemsPerPage,
+          options: selectOptions,
+        })}
+        {DatatableSearchBar({
+          label: searchLabel || defaultSearchLabel,
+          value: searchValue,
+          onChange: onSearch,
+          placeholder: searchPlaceholder || defaultSearchPlaceholder,
+        })}
       </div>
     );
   }

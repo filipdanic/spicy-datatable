@@ -31,7 +31,7 @@ class App extends Component {
               <p>Demo #1: Default behaviour. Check the console log.</p> : <p>Demo #2: Customized search function, labels, display etc.</p>}
           </div>
         </div>
-        <div className="App-intro" style={{ width: 650, padding: 20, marign: 20 }}>
+        <div className="App-intro" style={{ width: 800, padding: 20, marign: 20 }}>
           {demo === 1 ?
             <SpicyDatatable tableKey="demo-table-genral" columns={columns} rows={rows} /> :
             <SpicyDatatable tableKey="demo-table-custom-options" columns={columns} rows={rows} config={customOptions} />

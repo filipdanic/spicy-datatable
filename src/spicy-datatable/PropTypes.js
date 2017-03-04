@@ -18,13 +18,18 @@ export const DatatableOptionsPropTypes = {
   searchPlaceholder: PropTypes.string,
 };
 
-export const PaginationPropTypes = {
-  onPage: PropTypes.func.isRequired,
-  itemsPerPage: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  activePage: PropTypes.number.isRequired,
-  nextPageLabel: PropTypes.string,
-  previousPageLabel: PropTypes.string,
+export const DatatablePageSizePickerPropTypes = {
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+  options: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+export const DatatableSearchBarPropTypes = {
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export const SpicyDatatablePropTypes = {

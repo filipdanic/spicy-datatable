@@ -6,6 +6,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import style from './DatatableOptions.css';
+import { DatatableOptionsPropTypes } from '../PropTypes.js';
 
 const defaultPageSizeOptions = [10, 25, 50, 100];
 const defaultItemsPerPageLabel = 'Entries per page:';
@@ -14,16 +15,7 @@ const defaultSearchPlaceholder = 'Type to search…';
 
 class DatatableOptions extends Component {
 
-  static propTypes = {
-    itemsPerPage: PropTypes.number.isRequired,
-    searchValue: PropTypes.string.isRequired,
-    onSearch: PropTypes.func.isRequired,
-    onPageSizeChange: PropTypes.func.isRequired,
-    itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
-    itemsPerPageLabel: PropTypes.string,
-    searchLabel: PropTypes.string,
-    searchPlaceholder: PropTypes.string,
-  };
+  static propTypes = DatatableOptionsPropTypes;
 
   render() {
     const { itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onSearch, searchValue, onPageSizeChange, searchLabel, searchPlaceholder} = this.props;

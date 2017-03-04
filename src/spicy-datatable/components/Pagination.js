@@ -7,30 +7,16 @@
 import React, { Component, PropTypes } from 'react';
 import { getPaginationButtons } from './utilities.js';
 import style from './Pagination.css';
+import { PaginationPropTypes } from '../PropTypes.js';
+import PaginationNavButton from './PaginationNavButton.js';
 
 const maxButtons = 7;
 const defaultNextLabel = 'Next';
 const defaultPreviousLabel = 'Back';
 
-const navButton = (type, onClick, label) => (
-  <li
-    key={type}
-    className={`spicy-datatable-pagination-button ${type}`}
-    onClick={onClick}>
-    {label}
-  </li>
-);
-
 class Pagination extends Component {
 
-  static propTypes = {
-    onPage: PropTypes.func.isRequired,
-    itemsPerPage: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-    activePage: PropTypes.number.isRequired,
-    nextPageLabel: PropTypes.string,
-    previousPageLabel: PropTypes.string,
-  };
+  static propTypes = PaginationPropTypes;
 
   renderPagination() {
     const { itemsPerPage, total, activePage, nextPageLabel, previousPageLabel } = this.props;
@@ -38,7 +24,7 @@ class Pagination extends Component {
     const previousPage = activePage === 1 ? 1 : activePage - 1;
     const nextPage = activePage === length ? length : activePage + 1;
     let pageButtons = [
-      navButton('previous', this.handlePageButtonClick.bind(this, previousPage), previousPageLabel || defaultPreviousLabel)
+      PaginationNavButton('previous', this.handlePageButtonClick.bind(this, previousPage), previousPageLabel || defaultPreviousLabel)
     ];
     const pageNumbers = getPaginationButtons(maxButtons, activePage, length).map((value, index) => {
       const classes = `spicy-datatable-pagination-button ${value + 1 === activePage ? 'active' : ''}`;
@@ -58,7 +44,7 @@ class Pagination extends Component {
       );
     });
     pageButtons = pageButtons.concat(pageNumbers);
-    pageButtons.push(navButton('next', this.handlePageButtonClick.bind(this, nextPage), nextPageLabel || defaultNextLabel));
+    pageButtons.push(PaginationNavButton('next', this.handlePageButtonClick.bind(this, nextPage), nextPageLabel || defaultNextLabel));
     return pageButtons;
   }
 

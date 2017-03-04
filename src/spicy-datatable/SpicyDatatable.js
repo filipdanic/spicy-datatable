@@ -4,8 +4,9 @@
  * For complete documentation of how to use this, refer to the `README.md` or check out the examples in `App.ja`
  */
 import React, { Component, PropTypes } from 'react';
-import Pagination from './components/Pagination.js';
 import DatatableOptions from './components/DatatableOptions.js';
+import Pagination from './components/Pagination.js';
+import { SpicyDatatablePropTypes } from './PropTypes.js';
 import { filterRows, getSafely, setSafely } from './helpers';
 import style from './table.css';
 
@@ -16,25 +17,7 @@ const defaultEntryCountLabels = ['Showing', 'to', 'of', 'entries.'];
 
 export default class SpicyDatatable extends Component {
 
-  static propTypes = {
-    tableKey: PropTypes.string.isRequired,
-    columns: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-    })).isRequired,
-    rows: PropTypes.array.isRequired,
-    config: PropTypes.shape({
-      itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
-      itemsPerPageLabel: PropTypes.string,
-      nextPageLabel: PropTypes.string,
-      previousPageLabel: PropTypes.string,
-      searchLabel: PropTypes.string,
-      searchPlaceholder: PropTypes.string,
-      noEntriesLabel: PropTypes.string,
-      entryCountLabels: PropTypes.arrayOf(PropTypes.string),
-      customFilter: PropTypes.func
-    }),
-  };
+  static propTypes = SpicyDatatablePropTypes;
 
   constructor(props) {
     super(props);

@@ -1,11 +1,11 @@
-import { filterRows, getSafely, setSafely, defaultCache, range, getPaginationButtons } from '../utils.js';
+import { filterRows, getSafely, setSafely, defaultCache, range } from '../helpers.js';
 
-  const testRows = [
-    { prop1: 'Test #1', prop2: 'test1234', prop3: 400 },
-    { prop1: 'Test #2', prop2: 'testtest', prop3: [1,2,3] },
-    { prop1: 'Test #3', prop2: null, prop3: undefined },
-  ];
-  const testColumns = [{key: 'prop1'}, {key: 'prop2'}, {key: 'prop3'}];
+const testRows = [
+  { prop1: 'Test #1', prop2: 'test1234', prop3: 400 },
+  { prop1: 'Test #2', prop2: 'testtest', prop3: [1,2,3] },
+  { prop1: 'Test #3', prop2: null, prop3: undefined },
+];
+const testColumns = [{key: 'prop1'}, {key: 'prop2'}, {key: 'prop3'}];
 
 describe('filterRows() to return the properly filtered table rows based on query string', () => {
   it('Finds all matching rows', () => {
@@ -71,14 +71,3 @@ describe('range() builds a list of numbers for pagination', () => {
     expect(range(10, 20)).toEqual([10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
   });
 });
-
-describe('getPaginationButtons() builds a list of pagination items', () => {
-  it('passess all test cases', () => {
-    expect(getPaginationButtons(5, 1, 10)).toEqual([0, 1, 2, "ellipsis", 9]);
-    expect(getPaginationButtons(10, 5, 100)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, "ellipsis", 99]);
-    expect(getPaginationButtons(7, 0, 20)).toEqual([0, 1, 2, 3, 4, "ellipsis", 19]);
-    expect(getPaginationButtons(6, 2, 10)).toEqual([0, 1, 2, 3, "ellipsis", 9]);
-    expect(getPaginationButtons(10, 120, 1000)).toEqual([0, "ellipsis", 117, 118, 119, 120, 121, 122, 123, "ellipsis", 999]);
-  });
-});
-

@@ -32,13 +32,24 @@ export const DatatableSearchBarPropTypes = {
   placeholder: PropTypes.string.isRequired,
 };
 
+export const Rows = PropTypes.array.isRequired;
+
+export const Header = PropTypes.shape({
+  key: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+});
+
+export const DatatableHeaderPropTypes = PropTypes.arrayOf(Header).isRequired;
+
+export const DatatableRowsPropTypes = PropTypes.shape({
+  columns: Header,
+  rows: Rows,
+}).isRequired;
+
 export const SpicyDatatablePropTypes = {
   tableKey: PropTypes.string.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string,
-    label: PropTypes.string,
-  })).isRequired,
-  rows: PropTypes.array.isRequired,
+  columns: DatatableHeaderPropTypes,
+  rows: Rows,
   config: PropTypes.shape({
     itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
     itemsPerPageLabel: PropTypes.string,

@@ -5,6 +5,8 @@
  */
 import React, { Component, PropTypes } from 'react';
 import DatatableOptions from './components/DatatableOptions.js';
+import DatatableHeader from './components/DatatableHeader.js';
+import DatatableRows from './components/DatatableRows.js';
 import Pagination from './components/Pagination.js';
 import { SpicyDatatablePropTypes } from './PropTypes.js';
 import { filterRows, getSafely, setSafely } from './helpers';
@@ -19,6 +21,10 @@ export default class SpicyDatatable extends Component {
 
   constructor(props) {
     super(props);
+    this.handlePagination = this.handlePagination.bind(this);
+    this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+
     const itemsPerPage =
       getSafely(miniCache, props.tableKey).itemsPerPage ||
       props.config && props.config.itemsPerPageOptions ?
@@ -75,47 +81,25 @@ export default class SpicyDatatable extends Component {
           itemsPerPage={itemsPerPage}
           itemsPerPageOptions={itemsPerPageOptions}
           itemsPerPageLabel={itemsPerPageLabel}
-          onPageSizeChange={this.handlePageSizeChange.bind(this)}
-          onSearch={this.handleSearchQueryChange.bind(this)}
+          onPageSizeChange={this.handlePageSizeChange}
+          onSearch={this.handleSearchQueryChange}
           searchValue={searchQuery}
           searchLabel={searchLabel}
           searchPlaceholder={searchPlaceholder}
         />
         <table className="spicy-datatable">
-          <thead>
-            <tr>
-              {columns.map(c =>
-                <th key={c.key}>
-                  {c.label}
-                </th>
-              )}
-            </tr>
-          </thead>
+          {DatatableHeader({ columns })}
           <tbody>
-            {rows.map((r, i) =>
-              <tr
-                key={i}
-                onClick={r.onClickHandler ? r.onClickHandler : () => undefined}
-                style={{ cursor: r.onClickHandler ? 'pointer' : 'default' }}
-                className={r.isActive ? 'spicy-datatable--selected-row' : ''}
-              >
-                {columns.map((c, i) =>
-                  <td key={i}>
-                    {r[c.key]}
-                  </td>
-                )}
-              </tr>
-            )}
+            {DatatableRows({ columns, rows })}
           </tbody>
         </table>
         <div className="spicy-datatable-counter">
           {total > 0 ?
-          <p>
-            {entriesLabels[0]} {fromEntries} {entriesLabels[1]} {toEntries} {entriesLabels[2]} {total} {entriesLabels[3]}
-          </p> : <p>{noEntriesLabel || defaults.noEntiresLabel}</p>}
+            <p>{entriesLabels[0]} {fromEntries} {entriesLabels[1]} {toEntries} {entriesLabels[2]} {total} {entriesLabels[3]}</p> :
+            <p>{noEntriesLabel || defaults.noEntiresLabel}</p>}
         </div>
         <Pagination
-          onPage={this.handlePagination.bind(this)}
+          onPage={this.handlePagination}
           itemsPerPage={itemsPerPage}
           total={total}
           activePage={currentPage}

@@ -26,7 +26,7 @@ import SpicyDatatable from 'spicy-datatable';
   tableKey={key} // see below for prop documentation
   columns={columns}
   rows={rows}
-  config={config} // optional, overrides all default settings/labels
+  config={config} // optional, used to override chosen default settings/labels
 />
 
 ```

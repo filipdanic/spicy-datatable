@@ -17,6 +17,10 @@
   margin-left: 10px;
 }
 
+.spicy-datatableoptions-search--input {
+  padding: 2px 4px;
+}
+
 .spicy-datatableoptions-search--input,
 .spicy-datatableoptions-search--label {
   cursor: pointer;

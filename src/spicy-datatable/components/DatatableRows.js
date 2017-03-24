@@ -10,7 +10,7 @@ const DatatableRows = ({ columns, rows }) =>
   rows.map((r, i) =>
     <tr
       key={i}
-      onClick={r.onClickHandler ? r.onClickHandler : () => undefined}
+      onClick={r.onClickHandler ? (e) => r.onClickHandler(e, r, i) : () => undefined}
       style={{ cursor: r.onClickHandler ? 'pointer' : 'default' }}
       className={r.isActive ? 'spicy-datatable--selected-row' : ''}
     >

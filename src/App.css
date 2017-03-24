@@ -13,7 +13,9 @@
 }
 
 .App-intro {
-  margin: 0 auto;
+  margin: 20px auto;
+  width: 800px;
+  padding: 20px;
 }
 
 .demoBtn {

@@ -10,11 +10,15 @@ class App extends Component {
     super(props);
     this.state = {
       demo: 1,
+      clickDebugger: 'Try clicking on a row.',
     };
+    this.onSelectRow = this.onSelectRow.bind(this);
   }
 
   render() {
-    const { demo } = this.state;
+    const { demo, clickDebugger } = this.state;
+    const rowsWithCallback = rows.map((r) => (Object.assign({}, r, { onClickHandler: this.onSelectRow })));
+
     return (
       <div className="App">
         <div className="App-header">
@@ -23,18 +27,23 @@ class App extends Component {
           <p>A React.js based library for smart datatables.</p>
           <p>🛠  <a href="https://github.com/filipdanic/spicy-datatable">Get started on Github!</a></p>
           <div>
-            <button className="demoBtn" disabled={demo === 1} onClick={this.changeDemo.bind(this, 1)}>General demo</button>
-            <button className="demoBtn" style={{ marginLeft: 10 }} disabled={demo === 2} onClick={this.changeDemo.bind(this, 2)}>Custom options demo</button>
+            <button className="demoBtn" disabled={demo === 1} onClick={this.changeDemo.bind(this, 1)}>
+              General demo
+            </button>
+            <button className="demoBtn" style={{ marginLeft: 10 }} disabled={demo === 2} onClick={this.changeDemo.bind(this, 2)}>
+              Custom options demo
+            </button>
           </div>
           <div style={{fontSize: 10}}>
             {demo === 1 ?
-              <p>Demo #1: Default behaviour. Check the console log.</p> : <p>Demo #2: Customized search function, labels, display etc.</p>}
+              <p>Genral Demo: Default behaviour.</p> : <p>Custom Options: Customized search function, labels, display etc.</p>}
           </div>
         </div>
-        <div className="App-intro" style={{ width: 800, padding: 20, marign: 20 }}>
+        <div className="App-intro">
+          {clickDebugger ? <p><small>{clickDebugger}</small></p> : null}
           {demo === 1 ?
-            <SpicyDatatable tableKey="demo-table-genral" columns={columns} rows={rows} /> :
-            <SpicyDatatable tableKey="demo-table-custom-options" columns={columns} rows={rows} config={customOptions} />
+            <SpicyDatatable tableKey="demo-table-genral" columns={columns} rows={rowsWithCallback} /> :
+            <SpicyDatatable tableKey="demo-table-custom-options" columns={columns} rows={rowsWithCallback} config={customOptions} />
           }
         </div>
       </div>
@@ -42,7 +51,12 @@ class App extends Component {
   }
 
   changeDemo(demo) {
-    this.setState({demo});
+    this.setState({ demo, clickDebugger: 'Try clicking on a row.' });
+  }
+
+  onSelectRow(e, row, index) {
+    const { id } = row;
+    this.setState({ clickDebugger: `Clicked on row with id ${row.id} (${row.name} / ${row.email} / ${row.state}).` })
   }
 }
 

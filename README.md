@@ -2,7 +2,7 @@
 
 A React.js datatables without jQuery. Smart datatable that includes search, pagination, and localization support.
 
-[DEMO: ReactJS Datatables in Action!](https://build-gjktjxoelm.now.sh)
+[DEMO: ReactJS Datatables in Action!](https://build-evgarwptse.now.sh/)
 
 Jump to: [installing](#install), [required props](#required-prop-docs), [customization (e.g. localization) via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
 
@@ -79,7 +79,10 @@ const rows = [
 ];
 ```
 
-- The **`onClickHandler`** is optional. It will attach an `onClick()` callback on the row.
+- The **`onClickHandler`** is optional. It will attach an `onClick()` callback on the row. Your handler will receive three params:
+  - `event {Object}`, the proxied React click event
+  - `row {Object}`, the row that was clicked
+  - `index {Number}`, the index of the item within the currently visible table view
 - The **`isActive`** prop is also optional. The row that has this prop set to true will have a special class applied (CSS styling purposes.)
 
 ## Config prop

@@ -3,7 +3,7 @@
  * Pure component that renders the header of the table.
  */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { DatatableHeaderPropTypes } from '../PropTypes.js';
 
 const DatatableHeader = ({ columns }) =>

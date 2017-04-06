@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import SpicyDatatable from './spicy-datatable/SpicyDatatable.js';
 import logo from './logo.svg';
@@ -55,7 +56,6 @@ class App extends Component {
   }
 
   onSelectRow(e, row, index) {
-    const { id } = row;
     this.setState({ clickDebugger: `Clicked on row with id ${row.id} (${row.name} / ${row.email} / ${row.state}).` })
   }
 }

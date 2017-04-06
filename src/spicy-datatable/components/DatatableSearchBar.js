@@ -3,7 +3,7 @@
  * Pure component that renders a search field for the table.
  */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { DatatableSearchBarPropTypes } from '../PropTypes.js';
 
 const DatatableSearchBar = ({ label, onChange, value, placeholder }) =>

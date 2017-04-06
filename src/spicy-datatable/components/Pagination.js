@@ -4,12 +4,13 @@
  * Lots of code reused from https://github.com/chengjianhua/react-datatable
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import PaginationNavButton from './PaginationNavButton.js';
 import { getPaginationButtons } from './utilities.js';
-import style from './Pagination.css';
 import { PaginationPropTypes } from '../PropTypes.js';
 import { PaginationDefaults as defaults } from '../defaults.js';
+// eslint-disable-next-line
+import style from './Pagination.css';
 
 class Pagination extends Component {
 

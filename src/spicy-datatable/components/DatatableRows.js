@@ -3,7 +3,7 @@
  * Pure component that renders the rows of the table.
  */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { DatatableRowsPropTypes } from '../PropTypes.js';
 
 const DatatableRows = ({ columns, rows }) =>

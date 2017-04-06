@@ -3,7 +3,7 @@
  * Pure component that renders a select field for choosing the page size.
  */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { DatatablePageSizePickerPropTypes } from '../PropTypes.js';
 
 const DatatablePageSizePicker = ({ label, onChange, value, options }) =>

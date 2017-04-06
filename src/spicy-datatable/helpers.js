@@ -66,7 +66,7 @@ export function filterRows(rows, columns, searchQuery = '') {
   if (searchQuery === null || searchQuery === '') {
     return rows;
   }
-  rows.map(row => {
+  rows.forEach(row => {
     columns.some(column => {
       if (row[column.key] !== undefined && row[column.key] !== null) {
         const rowValue = String(row[column.key]).toLowerCase();
@@ -75,6 +75,7 @@ export function filterRows(rows, columns, searchQuery = '') {
           return true;
         }
       }
+      return false;
     });
   });
   return filteredRows;

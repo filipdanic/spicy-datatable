@@ -3,7 +3,7 @@
  * Main entry file for `spicy-datatable` package. Renders a tabele given a tableKey, columns, and rows prop.
  * For complete documentation of how to use this, refer to the `README.md` or check out the examples in `App.ja`
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import DatatableOptions from './components/DatatableOptions.js';
 import DatatableHeader from './components/DatatableHeader.js';
 import DatatableRows from './components/DatatableRows.js';
@@ -11,6 +11,7 @@ import Pagination from './components/Pagination.js';
 import { SpicyDatatablePropTypes } from './PropTypes.js';
 import { filterRows, getSafely, setSafely } from './helpers';
 import { SpicyDatatableDefaults as defaults } from './defaults.js';
+// eslint-disable-next-line
 import style from './table.css';
 
 const miniCache = {};
@@ -25,10 +26,8 @@ export default class SpicyDatatable extends Component {
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
     this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
 
-    const itemsPerPage =
-      getSafely(miniCache, props.tableKey).itemsPerPage ||
-      props.config && props.config.itemsPerPageOptions ?
-        props.config.itemsPerPageOptions[0] : 10;
+    const itemsPerPage = getSafely(miniCache, props.tableKey).itemsPerPage ||
+    (props.config && props.config.itemsPerPageOptions ? props.config.itemsPerPageOptions[0] : 10);
     this.state = {
       itemsPerPage,
       currentPage: getSafely(miniCache, props.tableKey).currentPage || 1,
@@ -37,7 +36,7 @@ export default class SpicyDatatable extends Component {
     if (this.state.searchQuery.length > 0) {
       const filterFunction = props.customFilter ? props.customFilter : filterRows;
       const filteredRows = filterFunction(props.rows, props.columns, this.state.searchQuery) || [];
-      this.state.filteredRows = filteredRows;
+      this.setState({ filteredRows });
     }
   }
 
@@ -47,11 +46,9 @@ export default class SpicyDatatable extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.tableKey !== this.props.tableKey) {
-      const itemsPerPage =
-        getSafely(miniCache, this.props.tableKey).itemsPerPage ||
-        this.props.config && this.props.config.itemsPerPageOptions ?
-          this.props.config.itemsPerPageOptions[0] : 10;
-     const currentPage = getSafely(miniCache, this.props.tableKey).currentPage || 1;
+      const itemsPerPage = getSafely(miniCache, this.props.tableKey).itemsPerPage ||
+        (this.props.config && this.props.config.itemsPerPageOptions ? this.props.config.itemsPerPageOptions[0] : 10);
+      const currentPage = getSafely(miniCache, this.props.tableKey).currentPage || 1;
       this.setState({ currentPage, itemsPerPage });
     }
   }
@@ -64,7 +61,6 @@ export default class SpicyDatatable extends Component {
       nextPageLabel, previousPageLabel,
       searchLabel, searchPlaceholder,
       noEntriesLabel, entryCountLabels,
-      customFilter
     } = config;
     const isFilterActive = searchQuery.length > 0;
     const filteredRows = isFilterActive ? stateFilteredRows : originalRows;

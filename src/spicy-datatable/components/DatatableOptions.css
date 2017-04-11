@@ -25,3 +25,12 @@
 .spicy-datatableoptions-search--label {
   cursor: pointer;
 }
+
+.spicy-datatableoptions-export--button-wrapper {
+  float: left;
+  clear: both;
+}
+
+.spicy-datatableoptions-export--button {
+  cursor: pointer;
+}

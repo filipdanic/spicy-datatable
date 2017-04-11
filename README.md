@@ -1,10 +1,10 @@
 # spicy-datatable
 
-A React.js datatables without jQuery. Smart datatable that includes search, pagination, and localization support.
+A React.js datatables without jQuery. Smart datatable component that includes search, pagination, CSV export, and localization support.
 
 [DEMO: ReactJS Datatables in Action!](https://build-evgarwptse.now.sh/)
 
-Jump to: [installing](#install), [required props](#required-prop-docs), [customization (e.g. localization) via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
+Jump to: [installing](#install), [required props](#required-prop-docs), [customization and localization via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
 
 ## Install
 
@@ -89,30 +89,73 @@ const rows = [
 
 You can pass a `config` prop the `<SpicyDatatable />` component to change all the default settings and labels.
 
-This is great if you want to change the text or localize your component. Here’s an overview of all the options you can specify via the `config` object:
+This is great if you want to change the text or localize your component. Here’s an overview of all the options you can specify via the `config` object.
+
+_See the [customOptions object in the demo data](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) for an example of how it is used in example #2 on the demo page._
+
+### Pagination Config
 
 - **`itemsPerPageOptions`**: an `Array` of `Number`s, defaults to `[10, 25, 50, 100]`,
 - **`itemsPerPageLabel`**: a `String`, defaults to `Entries per page:`
 - **`nextPageLabel`**: a `String`, defaults to `Next`
 - **`previousPageLabel`**: a `String`, defaults to `Back`
+
+### Search Config
+
 - **`searchLabel`**: a `String`, defaults to `Search:`
-- **`searchPlaceholder`**: a `String`, default to `Type to search…`
+- **`searchPlaceholder`**: a `String`, defaults to `Type to search…`
+
+### CSV Export Config
+
+- **`showDownloadCSVButton`**: a `Boolean` to turn the CSV export on or off, defaults to `false`.
+- **`downloadCSVButtonLabel`**: a `String` to change the label on the CSV button, defaults to `Export CSV`.
+
+### Misc Labels
+
 - **`noEntriesLabel`**: a `String`, defaults to `No entries to show.`
 - **`entryCountLabels`**: an `Array` of `String`s, defaults to `['Showing', 'to', 'of', 'entries.']`. Prints out _Showing 10 to 20 of 300 entires._ at the bottom of the table.
-- **`customFilter`**: a `Function()` that can be used to override the default search logic. It takes three params: `(rows, columns, searchQuery)`.
 
-See the [customOptions object in the demo data](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) for an example of how it is used in example #2 on the demo page.
+### Custom Filter
+
+- **`customFilter`**: a `Function()` that can be used to override the default search logic. It will get three params: `(rows, columns, searchQuery)` and should return a new `rows` of type `Array`.
+
+__**Example:**__
+
+Say you want to only search for matches in the `name` column while ignoring case sensitivity:
+
+```javascript
+const customFilter = (rows, columns, searchQuery = '') => {
+  return rows.filter(row => row.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1);
+}
+```
 
 ## Styling
 
 Out of the box, `spicy-datatable` is bare-bones. Include this [CSS starter file](https://github.com/filipdanic/spicy-datatable/blob/master/src/sample-styles.css) in your project to get the look from the demo. Edit it to suit your needs.
+
+## FAQ
+
+Q: I want the search feature to account for accidental typos (or implement a different type of logic altogether).
+A: Check the [prop config object](#config-prop), it has a `customFilter` options. Here’s a [sample object](https://github.com/filipdanic/spicy-datatable/blob/master/src/demo-data.js) that has a custom filter function.
+
+Q: Is this component compatible with React 15.5.x?
+A: Yep! And we’ll be switching to 16.x.x once it’s stable.
+
+Q: Is the CSV export supported by MS Edge / Internet Explorer 11?
+A: Yep, and it should be supported by IE9+.
+
+Q: There is no CSV button in my table?!
+A: This CSV export is an optional feature, you need to turn it on via a [prop config object.](#config-prop)
+
+Q: How can I style the CSV button?
+A: The button has a CSS class `spicy-datatableoptions-export--button` and is wrapped by `spicy-datatableoptions-export--button-wrapper`. See the sample from the styling section.
 
 ## Roadmap
 
 - (Optional) Bootstrap styles!
 - Unit and performance tests.
 - Sortable columns.
-- CSV/PDF/Excel download
+- PDF/Excel download
 
 ## Contribute
 

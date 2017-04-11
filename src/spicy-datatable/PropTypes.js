@@ -5,7 +5,7 @@
  * Rest are used internally by the library.
  */
 
-import { PropTypes } from 'react';
+import { PropTypes } from 'prop-types';
 
 export const DatatableOptionsPropTypes = {
   itemsPerPage: PropTypes.number.isRequired,
@@ -16,6 +16,9 @@ export const DatatableOptionsPropTypes = {
   itemsPerPageLabel: PropTypes.string,
   searchLabel: PropTypes.string,
   searchPlaceholder: PropTypes.string,
+  onDownloadCSV: PropTypes.func,
+  showDownloadCSVButton: PropTypes.bool,
+  downloadCSVButtonLabel: PropTypes.string,
 };
 
 export const DatatablePageSizePickerPropTypes = {
@@ -59,6 +62,8 @@ export const SpicyDatatablePropTypes = {
     searchPlaceholder: PropTypes.string,
     noEntriesLabel: PropTypes.string,
     entryCountLabels: PropTypes.arrayOf(PropTypes.string),
-    customFilter: PropTypes.func
+    customFilter: PropTypes.func,
+    showDownloadCSVButton: PropTypes.bool,
+    downloadCSVButtonLabel: PropTypes.string,
   }),
 };

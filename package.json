@@ -36,8 +36,8 @@
     "enzyme": "2.7.0",
     "extract-text-webpack-plugin": "1.0.1",
     "react": "15.4.2",
-    "react-dom": "15.4.2",
     "react-addons-test-utils": "15.4.2",
+    "react-dom": "15.4.2",
     "react-scripts": "0.8.4",
     "webpack": "1.14.0"
   },
@@ -47,5 +47,9 @@
     "test": "react-scripts test --env=jsdom",
     "prepublish": "npm run build-module",
     "build-module": "webpack --config webpack.prod.config.js --colors --display-error-details --progress"
+  },
+  "dependencies": {
+    "json2csvexporter": "^0.2.4",
+    "prop-types": "^15.5.6"
   }
 }

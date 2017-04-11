@@ -3,6 +3,7 @@ export const DatatableOptionsDefaults = {
   itemsPerPageLabel: 'Entries per page:',
   searchLabel: 'Search:',
   searchPlaceholder: 'Type to search…',
+  downloadCSVButtonLabel: 'Export CSV'
 };
 
 export const PaginationDefaults = {

@@ -4,6 +4,7 @@
  * For complete documentation of how to use this, refer to the `README.md` or check out the examples in `App.ja`
  */
 import React, { Component } from 'react';
+import CSVExportService from 'json2csvexporter';
 import DatatableOptions from './components/DatatableOptions.js';
 import DatatableHeader from './components/DatatableHeader.js';
 import DatatableRows from './components/DatatableRows.js';
@@ -25,6 +26,7 @@ export default class SpicyDatatable extends Component {
     this.handlePagination = this.handlePagination.bind(this);
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
     this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.handleDownloadCSV = this.handleDownloadCSV.bind(this);
 
     const itemsPerPage = getSafely(miniCache, props.tableKey).itemsPerPage ||
     (props.config && props.config.itemsPerPageOptions ? props.config.itemsPerPageOptions[0] : 10);
@@ -61,6 +63,7 @@ export default class SpicyDatatable extends Component {
       nextPageLabel, previousPageLabel,
       searchLabel, searchPlaceholder,
       noEntriesLabel, entryCountLabels,
+      showDownloadCSVButton, downloadCSVButtonLabel,
     } = config;
     const isFilterActive = searchQuery.length > 0;
     const filteredRows = isFilterActive ? stateFilteredRows : originalRows;
@@ -82,6 +85,9 @@ export default class SpicyDatatable extends Component {
           searchValue={searchQuery}
           searchLabel={searchLabel}
           searchPlaceholder={searchPlaceholder}
+          showDownloadCSVButton={showDownloadCSVButton}
+          downloadCSVButtonLabel={downloadCSVButtonLabel}
+          onDownloadCSV={this.handleDownloadCSV.bind(this, filteredRows)}
         />
         <table className="spicy-datatable">
           {DatatableHeader({ columns })}
@@ -137,5 +143,9 @@ export default class SpicyDatatable extends Component {
     this.setState({ itemsPerPage: Number(value), currentPage: 1 });
     setSafely(miniCache, tableKey, 'itemsPerPage', Number(value));
     setSafely(miniCache, tableKey, 'currentPage', 1);
+  }
+
+  handleDownloadCSV(rows) {
+    CSVExportService.download(rows, { columns: this.props.columns.map(column => column.key) });
   }
 }

@@ -43,7 +43,7 @@ class App extends Component {
         <div className="App-intro">
           {clickDebugger ? <p><small>{clickDebugger}</small></p> : null}
           {demo === 1 ?
-            <SpicyDatatable tableKey="demo-table-genral" columns={columns} rows={rowsWithCallback} /> :
+            <SpicyDatatable tableKey="demo-table-genral" columns={columns} rows={rowsWithCallback} config={{ showDownloadCSVButton: true }}/> :
             <SpicyDatatable tableKey="demo-table-custom-options" columns={columns} rows={rowsWithCallback} config={customOptions} />
           }
         </div>

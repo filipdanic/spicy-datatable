@@ -15,22 +15,34 @@ class DatatableOptions extends Component {
   static propTypes = DatatableOptionsPropTypes;
 
   render() {
-    const { itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onSearch, searchValue, onPageSizeChange, searchLabel, searchPlaceholder} = this.props;
+    const {
+      itemsPerPage, itemsPerPageLabel, itemsPerPageOptions, onPageSizeChange,
+      onSearch, searchValue, searchLabel, searchPlaceholder,
+      onDownloadCSV, showDownloadCSVButton, downloadCSVButtonLabel,
+    } = this.props;
     const selectOptions = itemsPerPageOptions || defaults.pageSizeOptions;
     return (
       <div className="spicy-datatableoptions-wrapper">
-        {DatatablePageSizePicker({
-          label: itemsPerPageLabel || defaults.itemsPerPageLabel,
-          onChange: onPageSizeChange,
-          value: itemsPerPage,
-          options: selectOptions,
-        })}
-        {DatatableSearchBar({
-          label: searchLabel || defaults.searchLabel,
-          value: searchValue,
-          onChange: onSearch,
-          placeholder: searchPlaceholder || defaults.searchPlaceholder,
-        })}
+        <div>
+          {DatatablePageSizePicker({
+            label: itemsPerPageLabel || defaults.itemsPerPageLabel,
+            onChange: onPageSizeChange,
+            value: itemsPerPage,
+            options: selectOptions,
+          })}
+          {DatatableSearchBar({
+            label: searchLabel || defaults.searchLabel,
+            value: searchValue,
+            onChange: onSearch,
+            placeholder: searchPlaceholder || defaults.searchPlaceholder,
+          })}
+        </div>
+        {showDownloadCSVButton ?
+          <div className="spicy-datatableoptions-export--button-wrapper">
+            <button className="spicy-datatableoptions-export--button" onClick={onDownloadCSV}>
+              {downloadCSVButtonLabel || defaults.downloadCSVButtonLabel}
+            </button>
+          </div> : null}
       </div>
     );
   }

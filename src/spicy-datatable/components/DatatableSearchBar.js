@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { DatatableSearchBarPropTypes } from '../PropTypes.js';
+// import { DatatableSearchBarPropTypes } from '../PropTypes.js';
 
 const DatatableSearchBar = ({ label, onChange, value, placeholder }) =>
   <div className="spicy-datatableoptions-search">
@@ -20,6 +20,6 @@ const DatatableSearchBar = ({ label, onChange, value, placeholder }) =>
     </label>
   </div>
 
-DatatableSearchBar.propTypes = DatatableSearchBarPropTypes;
+// DatatableSearchBar.propTypes = DatatableSearchBarPropTypes;
 
 export default DatatableSearchBar;

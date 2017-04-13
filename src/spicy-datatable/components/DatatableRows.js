@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { DatatableRowsPropTypes } from '../PropTypes.js';
+// import { DatatableRowsPropTypes } from '../PropTypes.js';
 
 const DatatableRows = ({ columns, rows }) =>
   rows.map((r, i) =>
@@ -22,6 +22,6 @@ const DatatableRows = ({ columns, rows }) =>
     </tr>
   )
 
-DatatableRows.propTypes = DatatableRowsPropTypes;
+// DatatableRows.propTypes = DatatableRowsPropTypes;
 
 export default DatatableRows;

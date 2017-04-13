@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-// import { DatatableHeaderPropTypes } from '../PropTypes.js';
+import { DatatableHeaderPropTypes } from '../PropTypes.js';
 
 const DatatableHeader = ({ columns }) =>
   <thead>
@@ -17,6 +17,6 @@ const DatatableHeader = ({ columns }) =>
     </tr>
   </thead>
 
-// DatatableHeader.propTypes = DatatableHeaderPropTypes;
+DatatableHeader.propTypes = DatatableHeaderPropTypes;
 
 export default DatatableHeader;

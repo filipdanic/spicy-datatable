@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-// import { DatatablePageSizePickerPropTypes } from '../PropTypes.js';
+import { DatatablePageSizePickerPropTypes } from '../PropTypes.js';
 
 const DatatablePageSizePicker = ({ label, onChange, value, options }) =>
   <div className="spicy-datatableoptions-sizepicker">
@@ -14,6 +14,6 @@ const DatatablePageSizePicker = ({ label, onChange, value, options }) =>
     </select>
   </div>
 
-// DatatablePageSizePicker.propTypes = DatatablePageSizePickerPropTypes;
+DatatablePageSizePicker.propTypes = DatatablePageSizePickerPropTypes;
 
 export default DatatablePageSizePicker;

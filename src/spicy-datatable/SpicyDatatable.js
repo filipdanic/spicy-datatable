@@ -9,7 +9,7 @@ import DatatableOptions from './components/DatatableOptions.js';
 import DatatableHeader from './components/DatatableHeader.js';
 import DatatableRows from './components/DatatableRows.js';
 import Pagination from './components/Pagination.js';
-// import { SpicyDatatablePropTypes } from './PropTypes.js';
+import { SpicyDatatablePropTypes } from './PropTypes.js';
 import { filterRows, getSafely, setSafely } from './helpers';
 import { SpicyDatatableDefaults as defaults } from './defaults.js';
 // eslint-disable-next-line
@@ -147,6 +147,6 @@ class SpicyDatatable extends Component {
   }
 }
 
-// SpicyDatatable.propTypes = SpicyDatatablePropTypes;
+SpicyDatatable.propTypes = SpicyDatatablePropTypes;
 
 export default SpicyDatatable;

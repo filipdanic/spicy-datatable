@@ -35,9 +35,9 @@
     "babel-preset-stage-0": "6.16.0",
     "enzyme": "2.7.0",
     "extract-text-webpack-plugin": "1.0.1",
-    "react": "15.4.2",
+    "react": "^15.3.0",
     "react-addons-test-utils": "15.4.2",
-    "react-dom": "15.4.2",
+    "react-dom": "^15.3.0",
     "react-scripts": "0.8.4",
     "webpack": "1.14.0"
   },

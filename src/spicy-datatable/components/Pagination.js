@@ -18,7 +18,7 @@ class Pagination extends Component {
 
   renderPagination() {
     const { itemsPerPage, total, activePage, nextPageLabel, previousPageLabel } = this.props;
-    const length = Math.ceil(total / itemsPerPage);
+    const length = Math.ceil(total / (itemsPerPage || 1));
     const previousPage = activePage === 1 ? 1 : activePage - 1;
     const nextPage = activePage === length ? length : activePage + 1;
     let pageButtons = [

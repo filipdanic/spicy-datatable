@@ -17,10 +17,7 @@ import style from './table.css';
 
 const miniCache = {};
 
-export default class SpicyDatatable extends Component {
-
-  static propTypes = SpicyDatatablePropTypes;
-
+class SpicyDatatable extends Component {
   constructor(props) {
     super(props);
     this.handlePagination = this.handlePagination.bind(this);
@@ -149,3 +146,7 @@ export default class SpicyDatatable extends Component {
     CSVExportService.download(rows, { columns: this.props.columns.map(column => column.key) });
   }
 }
+
+SpicyDatatable.propTypes = SpicyDatatablePropTypes;
+
+export default SpicyDatatable;

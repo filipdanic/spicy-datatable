@@ -1,6 +1,9 @@
 import React from 'react';
 import Pagination from '../Pagination.js';
-import { shallow } from 'enzyme';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 let called = false;
 const call = () => { called = true; };

@@ -173,3 +173,4 @@ Need help with your **first PR** in OSS? Open an issue and we will find somethin
 
 - [@filipdanic](https://github.com/filipdanic/)
 - [@sahiljain112](https://github.com/sahiljain112)
+- [@scott-schmalz](https://github.com/scott-schmalz)

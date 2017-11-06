@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       demo: 1,
-      clickDebugger: 'Try clicking on a row.',
+      clickDebugger: <p>Try clicking on a row.</p>,
     };
     this.onSelectRow = this.onSelectRow.bind(this);
   }
@@ -41,7 +41,7 @@ class App extends Component {
           </div>
         </div>
         <div className="App-intro">
-          {clickDebugger ? <p><small>{clickDebugger}</small></p> : null}
+          {clickDebugger ? clickDebugger : null}
           {demo === 1 ?
             <SpicyDatatable tableKey="demo-table-genral" columns={columns} rows={rowsWithCallback} config={{ showDownloadCSVButton: true }}/> :
             <SpicyDatatable tableKey="demo-table-custom-options" columns={columns} rows={rowsWithCallback} config={customOptions} />
@@ -52,11 +52,11 @@ class App extends Component {
   }
 
   changeDemo(demo) {
-    this.setState({ demo, clickDebugger: 'Try clicking on a row.' });
+    this.setState({ demo, clickDebugger: <p>Try clicking on a row.</p> });
   }
 
   onSelectRow(e, row, index) {
-    this.setState({ clickDebugger: `Clicked on row with id ${row.id} (${row.name} / ${row.email} / ${row.state}).` })
+    this.setState({ clickDebugger: <p>Clicked on row with <code>id: {row.id}</code> and data <code>{row.name} / {row.email} / {row.state}</code></p> })
   }
 }
 

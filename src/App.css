@@ -38,3 +38,10 @@
   color: white;
   background: #222;
 }
+
+code {
+  color: #F44336;
+  background: #EEEEEE;
+  padding: 2px 4px;
+  font-weight: 700;
+}

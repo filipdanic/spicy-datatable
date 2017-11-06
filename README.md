@@ -2,7 +2,7 @@
 
 A React.js datatables without jQuery. Smart datatable component that includes search, pagination, CSV export, and localization support.
 
-[DEMO: ReactJS Datatables in Action!](https://build-evgarwptse.now.sh/)
+[DEMO: ReactJS Datatables in Action!](https://build-pakavvnyrq.now.sh/)
 
 Jump to: [installing](#install), [required props](#required-prop-docs), [customization and localization via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
 

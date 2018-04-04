@@ -27,6 +27,12 @@ module.exports = {
       "amd": "react-dom",
       // React dep should be available as window.React, not window.react
       "root": "ReactDOM"
+    },
+    "prop-types": {
+      "commonjs": "prop-types",
+      "commonjs2": "prop-types",
+      "amd": "prop-types",
+      "root": "PropTypes"
     }
   },
   plugins: [

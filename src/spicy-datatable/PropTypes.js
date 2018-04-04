@@ -1,11 +1,11 @@
 /**
  * @fileoverview PropTypes.js
- * Used to define React proptypes for every component in the library.
- * Only `SpicyDatatablePropTypes` are the props that are avilable in the public API
+ * Used to define React prototypes for every component in the library.
+ * Only `SpicyDatatablePropTypes` are the props that are available in the public API
  * Rest are used internally by the library.
  */
 
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 export const DatatableOptionsPropTypes = {
   itemsPerPage: PropTypes.number.isRequired,

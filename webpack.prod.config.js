@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
   entry: path.join(__dirname, 'src/spicy-datatable/SpicyDatatable.js'),
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: path.join(__dirname, 'lib'),
@@ -51,7 +51,7 @@ module.exports = {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         include: [path.join(__dirname, 'src')],
         exclude: path.resolve(__dirname, 'node_modules'),
       }

@@ -65,5 +65,7 @@ export const SpicyDatatablePropTypes = {
     customFilter: PropTypes.func,
     showDownloadCSVButton: PropTypes.bool,
     downloadCSVButtonLabel: PropTypes.string,
+    customCSVKeys: PropTypes.arrayOf(PropTypes.string),
+    customCSVRowsFormatter: PropTypes.func,
   }),
 };

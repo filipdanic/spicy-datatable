@@ -109,6 +109,8 @@ _See the [customOptions object in the demo data](https://github.com/filipdanic/s
 
 - **`showDownloadCSVButton`**: a `Boolean` to turn the CSV export on or off, defaults to `false`.
 - **`downloadCSVButtonLabel`**: a `String` to change the label on the CSV button, defaults to `Export CSV`.
+- **`customCSVKeys`**: an `Array` of `String`s to specify which keys should be included in the exported CSV.
+- **`customCSVRowsFormatter`**: a `Function` that receives a single parameter `rows` of type `Array` and returns a similar structure back. Use this prop to format data that will be in the CSV.
 
 ### Misc Labels
 

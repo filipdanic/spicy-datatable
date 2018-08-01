@@ -52,7 +52,7 @@
     "build-module": "webpack --config webpack.prod.config.js --colors --display-error-details --progress"
   },
   "dependencies": {
-    "json2csvexporter": "^0.2.4",
+    "json2csvexporter": "^0.4.0",
     "prop-types": "^15.6.1"
   }
 }

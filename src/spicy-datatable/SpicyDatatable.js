@@ -20,10 +20,6 @@ const miniCache = {};
 class SpicyDatatable extends Component {
   constructor(props) {
     super(props);
-    this.handlePagination = this.handlePagination.bind(this);
-    this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
-    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
-    this.handleDownloadCSV = this.handleDownloadCSV.bind(this);
 
     const itemsPerPage = getSafely(miniCache, props.tableKey).itemsPerPage ||
     (props.config && props.config.itemsPerPageOptions ? props.config.itemsPerPageOptions[0] : 10);
@@ -39,18 +35,18 @@ class SpicyDatatable extends Component {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     clearTimeout(this.scheduleQueryChange);
-  }
+  };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.tableKey !== this.props.tableKey) {
       const itemsPerPage = getSafely(miniCache, this.props.tableKey).itemsPerPage ||
         (this.props.config && this.props.config.itemsPerPageOptions ? this.props.config.itemsPerPageOptions[0] : 10);
       const currentPage = getSafely(miniCache, this.props.tableKey).currentPage || 1;
       this.setState({ currentPage, itemsPerPage });
     }
-  }
+  };
 
   render() {
     const { columns, rows: originalRows = [], config = {} } = this.props;
@@ -107,17 +103,17 @@ class SpicyDatatable extends Component {
         />
       </div>
     );
-  }
+  };
 
-  handlePagination(nextPage) {
+  handlePagination = (nextPage) => {
     const { tableKey } = this.props;
     this.setState({
       currentPage: nextPage,
     });
     setSafely(miniCache, tableKey, 'currentPage', nextPage);
-  }
+  };
 
-  handleSearchQueryChange(e) {
+  handleSearchQueryChange = (e) => {
     const { columns, rows, config = {} } = this.props;
     const { value } = e.target;
     const { tableKey } = this.props;
@@ -132,19 +128,38 @@ class SpicyDatatable extends Component {
       setSafely(miniCache, tableKey, 'searchQuery', value);
       setSafely(miniCache, tableKey, 'currentPage', 1);
     }, 200);
-  }
+  };
 
-  handlePageSizeChange(e) {
+  handlePageSizeChange = (e) => {
     const { value } = e.target;
     const { tableKey } = this.props;
     this.setState({ itemsPerPage: Number(value), currentPage: 1 });
     setSafely(miniCache, tableKey, 'itemsPerPage', Number(value));
     setSafely(miniCache, tableKey, 'currentPage', 1);
-  }
+  };
 
-  handleDownloadCSV(rows) {
-    CSVExportService.download(rows, { columns: this.props.columns.map(column => column.key) });
-  }
+  formatRowsForCSVDownload = (rows) => {
+    if (this.props.config.customCSVRowsFormatter) {
+      return this.props.config.customCSVRowsFormatter(rows);
+    }
+    return rows;
+  };
+
+  filterApplicableKeysForCSVDownload = () => {
+    if (this.props.config.customCSVKeys) {
+      return this.props.config.customCSVKeys;
+    }
+    return this.props.columns.map((column) => column.key);
+  };
+
+  handleDownloadCSV = (rows) => {
+    const columns = this.filterApplicableKeysForCSVDownload();
+    const csvExport = new CSVExportService({
+      columns,
+      headers: columns.reduce((acc, column) => Object.assign({}, acc, { [column.key]: column.label }), {}),
+    });
+    csvExport.downloadCSV(this.formatRowsForCSVDownload(rows));
+  };
 }
 
 SpicyDatatable.propTypes = SpicyDatatablePropTypes;

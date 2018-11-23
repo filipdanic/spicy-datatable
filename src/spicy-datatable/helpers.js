@@ -80,3 +80,19 @@ export function filterRows(rows, columns, searchQuery = '') {
   });
   return filteredRows;
 }
+
+
+/**
+ * Sort the rows for the column.
+ * @param {String} field
+ * @param {boolean} reverse
+ * @param {return function} primer
+ */
+export function sort_by(field, reverse, primer) {
+   var key = function (x) {return primer ? primer(x[field]) : x[field]};
+
+   return function (a,b) {
+	  var A = key(a), B = key(b);
+	  return ( (A < B) ? -1 : ((A > B) ? 1 : 0) ) * [-1,1][+!!reverse];                  
+   }
+}

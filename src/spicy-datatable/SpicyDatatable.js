@@ -10,7 +10,7 @@ import DatatableHeader from './components/DatatableHeader.js';
 import DatatableRows from './components/DatatableRows.js';
 import Pagination from './components/Pagination.js';
 import { SpicyDatatablePropTypes } from './PropTypes.js';
-import { filterRows, getSafely, setSafely } from './helpers';
+import { sort_by, filterRows, getSafely, setSafely } from './helpers';
 import { SpicyDatatableDefaults as defaults } from './defaults.js';
 // eslint-disable-next-line
 import style from './table.css';
@@ -27,6 +27,8 @@ class SpicyDatatable extends Component {
       itemsPerPage,
       currentPage: getSafely(miniCache, props.tableKey).currentPage || 1,
       searchQuery: getSafely(miniCache, props.tableKey).searchQuery || '',
+	  sortColumn: false,
+      sortOrder: false
     };
     if (this.state.searchQuery.length > 0) {
       const filterFunction = props.customFilter ? props.customFilter : filterRows;
@@ -83,7 +85,7 @@ class SpicyDatatable extends Component {
           onDownloadCSV={this.handleDownloadCSV.bind(this, filteredRows)}
         />
         <table className="spicy-datatable">
-          {DatatableHeader({ columns })}
+          {DatatableHeader({ columns, onSort:this.handleSort })}
           <tbody>
             {DatatableRows({ columns, rows })}
           </tbody>
@@ -111,6 +113,25 @@ class SpicyDatatable extends Component {
       currentPage: nextPage,
     });
     setSafely(miniCache, tableKey, 'currentPage', nextPage);
+  };
+  
+  handleSort = (e, c) => {
+  	const { rows } = this.props;
+    const column = c.key;
+    const { tableKey } = this.props;
+    const { filteredRows, sortColumn, sortOrder } = this.state;
+    if (this.scheduleQueryChange) {
+      clearTimeout(this.scheduleQueryChange);
+    }
+    this.scheduleQueryChange = setTimeout(() => {
+      const sortRows = filteredRows !== undefined && filteredRows.length > 0 ? filteredRows : rows;
+      const sortRev = sortColumn !== undefined && sortOrder && String(sortColumn).toLowerCase() === String(column).toLowerCase() ? false : true;
+      const filteredSortRows = (column.length === 0 ? [] : sortRows.sort(sort_by(column, sortRev, function(a){return a.toUpperCase()}))) || [];
+      this.setState({ filteredRows : filteredSortRows, currentPage: 1, sortColumn : column, sortOrder : sortRev  });
+      setSafely(miniCache, tableKey, 'sortColumn', column);
+      setSafely(miniCache, tableKey, 'sortOrder', sortRev);
+      setSafely(miniCache, tableKey, 'currentPage', 1);
+    }, 200);
   };
 
   handleSearchQueryChange = (e) => {

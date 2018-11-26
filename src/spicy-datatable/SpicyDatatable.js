@@ -10,7 +10,7 @@ import DatatableHeader from './components/DatatableHeader.js';
 import DatatableRows from './components/DatatableRows.js';
 import Pagination from './components/Pagination.js';
 import { SpicyDatatablePropTypes } from './PropTypes.js';
-import { sort_by, filterRows, getSafely, setSafely } from './helpers';
+import { sortBy, filterRows, getSafely, setSafely } from './helpers';
 import { SpicyDatatableDefaults as defaults } from './defaults.js';
 // eslint-disable-next-line
 import style from './table.css';
@@ -126,7 +126,8 @@ class SpicyDatatable extends Component {
     this.scheduleQueryChange = setTimeout(() => {
       const sortRows = filteredRows !== undefined && filteredRows.length > 0 ? filteredRows : rows;
       const sortRev = sortColumn !== undefined && sortOrder && String(sortColumn).toLowerCase() === String(column).toLowerCase() ? false : true;
-      const filteredSortRows = (column.length === 0 ? [] : sortRows.sort(sort_by(column, sortRev, function(a){return a.toUpperCase()}))) || [];
+      const sortFunction = () => sortRows.sort(sortBy(column, sortRev));
+      const filteredSortRows = (column.length === 0 ? [] : sortFunction()) || [];
       this.setState({ filteredRows : filteredSortRows, currentPage: 1, sortColumn : column, sortOrder : sortRev  });
       setSafely(miniCache, tableKey, 'sortColumn', column);
       setSafely(miniCache, tableKey, 'sortOrder', sortRev);

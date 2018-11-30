@@ -27,7 +27,7 @@ class SpicyDatatable extends Component {
       itemsPerPage,
       currentPage: getSafely(miniCache, props.tableKey).currentPage || 1,
       searchQuery: getSafely(miniCache, props.tableKey).searchQuery || '',
-	  sortColumn: false,
+	    sortColumn: false,
       sortOrder: false
     };
     if (this.state.searchQuery.length > 0) {
@@ -85,7 +85,14 @@ class SpicyDatatable extends Component {
           onDownloadCSV={this.handleDownloadCSV.bind(this, filteredRows)}
         />
         <table className="spicy-datatable">
-          {DatatableHeader({ columns, onSort:this.handleSort })}
+          {DatatableHeader({
+            sort: {
+              sortColumn: this.state.sortColumn,
+              sortOrder: this.state.sortOrder,
+            },
+            columns,
+            onSort: this.handleSort
+          })}
           <tbody>
             {DatatableRows({ columns, rows })}
           </tbody>
@@ -128,7 +135,7 @@ class SpicyDatatable extends Component {
       const sortRev = sortColumn !== undefined && sortOrder && String(sortColumn).toLowerCase() === String(column).toLowerCase() ? false : true;
       const sortFunction = () => sortRows.sort(sortBy(column, sortRev));
       const filteredSortRows = (column.length === 0 ? [] : sortFunction()) || [];
-      this.setState({ filteredRows : filteredSortRows, currentPage: 1, sortColumn : column, sortOrder : sortRev  });
+      this.setState({ filteredRows: filteredSortRows, currentPage: 1, sortColumn: column, sortOrder: sortRev });
       setSafely(miniCache, tableKey, 'sortColumn', column);
       setSafely(miniCache, tableKey, 'sortOrder', sortRev);
       setSafely(miniCache, tableKey, 'currentPage', 1);

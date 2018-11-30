@@ -37,7 +37,7 @@ class App extends Component {
           </div>
           <div style={{fontSize: 10}}>
             {demo === 1 ?
-              <p>Genral Demo: Default behaviour.</p> : <p>Custom Options: Customized search function, labels, display etc.</p>}
+              <p>Genral Demo: Default behaviour. Try clicking on the name and state columns to sort the table.</p> : <p>Custom Options: Customized search function, labels, display etc.</p>}
           </div>
         </div>
         <div className="App-intro">

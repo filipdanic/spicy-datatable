@@ -2,7 +2,7 @@
 
 A React.js datatables without jQuery. Smart datatable component that includes search, pagination, CSV export, and localization support.
 
-[DEMO: ReactJS Datatables in Action!](https://build-pakavvnyrq.now.sh/) And supporting [source code.](https://github.com/filipdanic/spicy-datatable/blob/master/src/App.js)
+[DEMO: ReactJS Datatables in Action!](https://build-ptcdswcste.now.sh/) And supporting [source code.](https://github.com/filipdanic/spicy-datatable/blob/master/src/App.js)
 
 Jump to:
 - [Installing](#install)

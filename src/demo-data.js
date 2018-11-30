@@ -28,12 +28,14 @@ const columns = [{
   }, {
     key: 'name',
     label: 'Name',
+    sort:true
   }, {
     key: 'email',
     label: 'Email',
   }, {
     key: 'state',
     label: 'State',
+    sort:true
   },
 ];
 

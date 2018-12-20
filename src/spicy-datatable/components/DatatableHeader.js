@@ -6,16 +6,16 @@
 import React from 'react';
 import { DatatableHeaderPropTypes } from '../PropTypes.js';
 
-const DatatableHeader = ({ columns, onSort }) =>
+const DatatableHeader = ({ columns, onSort, sort }) =>
   <thead>
     <tr>
       {columns.map(c =>
         <th 
-			key={c.key}
-			onClick={c.sort ? (e) => onSort(e, c) : () => undefined}
-			style={{ cursor: c.sort ? 'pointer' : 'default' }}
-		>
-          {c.label}
+			    key={c.key}
+			    onClick={c.sort ? (e) => onSort(e, c) : undefined}
+			    style={{ cursor: c.sort ? 'pointer' : 'default' }}
+		    >
+          {sort.sortColumn === c.key ? (sort.sortOrder ? '▾ ' : '▴ ') : ''}{c.label}
         </th>
       )}
     </tr>

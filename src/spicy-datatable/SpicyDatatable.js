@@ -176,15 +176,17 @@ class SpicyDatatable extends Component {
 
   filterApplicableKeysForCSVDownload = () => {
     if (this.props.config.customCSVKeys) {
-      return this.props.config.customCSVKeys;
+      let filteredColumns= []; 	
+      this.props.config.customCSVKeys.map((keys) => { this.props.columns.filter((column) => (keys === column.key) ? filteredColumns.push(column) : '') });	
+      return filteredColumns;
     }
-    return this.props.columns.map((column) => column.key);
+    return this.props.columns;
   };
 
   handleDownloadCSV = (rows) => {
     const columns = this.filterApplicableKeysForCSVDownload();
     const csvExport = new CSVExportService({
-      columns,
+      columns : columns.map((column) => column.key),
       headers: columns.reduce((acc, column) => Object.assign({}, acc, { [column.key]: column.label }), {}),
     });
     csvExport.downloadCSV(this.formatRowsForCSVDownload(rows));

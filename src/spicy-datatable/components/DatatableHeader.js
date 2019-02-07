@@ -15,7 +15,11 @@ const DatatableHeader = ({ columns, onSort, sort }) =>
 			    onClick={c.sort ? (e) => onSort(e, c) : undefined}
 			    style={{ cursor: c.sort ? 'pointer' : 'default' }}
 		    >
-          {sort.sortColumn === c.key ? (sort.sortOrder ? '▾ ' : '▴ ') : ''}{c.label}
+          {sort.sortColumn === c.key ?
+            <span style={{ fontSize: '0.6rem' }}>{sort.sortOrder ? '▼ ' : '▲ '}</span>
+            : ''
+          }
+          {c.label}
         </th>
       )}
     </tr>

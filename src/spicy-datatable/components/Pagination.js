@@ -7,14 +7,11 @@
 import React, { Component } from 'react';
 import PaginationNavButton from './PaginationNavButton.js';
 import { getPaginationButtons } from './utilities.js';
-import { PaginationPropTypes } from '../PropTypes.js';
 import { PaginationDefaults as defaults } from '../defaults.js';
 // eslint-disable-next-line
 import style from './Pagination.css';
 
 class Pagination extends Component {
-
-  static propTypes = PaginationPropTypes;
 
   renderPagination() {
     const { itemsPerPage, total, activePage, nextPageLabel, previousPageLabel } = this.props;

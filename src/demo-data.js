@@ -36,11 +36,6 @@ const columns = [{
     key: 'state',
     label: 'State',
     sort: true
-  }, {
-    key: 'date',
-    label: 'Date',
-    sort: true,
-    sortType:'date'
   },
 ];
 

@@ -24,7 +24,7 @@
     "url": "http://danicfilip.com"
   },
   "main": "lib/SpicyDatatable.js",
-  "version": "0.7.1",
+  "version": "0.8.1",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -38,9 +38,11 @@
     "enzyme-adapter-react-16": "^1.0.0",
     "extract-text-webpack-plugin": "1.0.1",
     "react-addons-test-utils": "15.4.2",
-    "react-scripts": "0.8.4",
+    "react-scripts": "1.1.0",
     "react-test-renderer": "^16.0.0",
-    "webpack": "2.7.0"
+    "webpack": "2.7.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,9 +2,17 @@
 
 A React.js datatables without jQuery. Smart datatable component that includes search, pagination, CSV export, and localization support.
 
-[DEMO: ReactJS Datatables in Action!](https://build-pakavvnyrq.now.sh/) And supporting [source code.](https://github.com/filipdanic/spicy-datatable/blob/master/src/App.js)
+**Demos:**
+- [Live ReactJS Datatables in Action!](https://build-ptcdswcste.now.sh/) And supporting [source code.](https://github.com/filipdanic/spicy-datatable/blob/master/src/App.js)
+- [CodeSandbox Demo and Starter](https://codesandbox.io/s/ov4po21nky)
 
-Jump to: [installing](#install), [required props](#required-prop-docs), [customization and localization via config](#config-prop), [styling](#styling), [roadmap](#roadmap), [contributing](#contribute).
+Jump to:
+- [Installing](#install)
+- [Required props](#required-prop-docs)
+- [Customization and localization via config](#config-prop),
+- [Styling](#styling)
+- [Roadmap](#roadmap)
+- [Contributing](#contribute).
 
 ## Install
 
@@ -50,6 +58,7 @@ const columns = [{
   }, {
     key: 'name',
     label: 'Name',
+    sort: true, // will enable a client-side sort for this column!
   }, {
     key: 'email',
     label: 'Email',
@@ -156,7 +165,7 @@ A: The button has a CSS class `spicy-datatableoptions-export--button` and is wra
 
 - (Optional) Bootstrap styles!
 - Unit and performance tests.
-- Sortable columns.
+- ~~Sortable columns.~~
 - PDF/Excel download
 
 ## Contribute
@@ -176,3 +185,4 @@ Need help with your **first PR** in OSS? Open an issue and we will find somethin
 - [@filipdanic](https://github.com/filipdanic/)
 - [@sahiljain112](https://github.com/sahiljain112)
 - [@scott-schmalz](https://github.com/scott-schmalz)
+- [@shahidulkareem](https://github.com/shahidulkareem)

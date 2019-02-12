@@ -86,16 +86,14 @@ export function filterRows(rows, columns, searchQuery = '') {
  * Sort the rows of the column based on alphabets and integer.
  * @param {String} column
  * @param {Boolean} sortOrder
- * @param {String} sortType
  */
  
-export function sortBy(sortColumn, sortOrder, sortType) {
+export function sortBy(sortColumn, sortOrder) {
 	const lowerCase = (value) => typeof value === "string" ? value.toLowerCase() : value;
 	const key = (row) => lowerCase ? lowerCase(row[sortColumn]) : row[sortColumn]; 
 	const result = (row1,row2) => ( (row1 < row2) ? -1 : ((row1 > row2) ? 1 : 0) ) * [-1,1][Number(Boolean(sortOrder))];
+	
    return function (a,b) {
-    return function (a,b) {
-      return sortType === 'date' ? result(new Date(key(a)), new Date(key(b))) : result(key(a), key(b));                  
-     }                 
+	  return result(key(a), key(b));                  
    }
 }

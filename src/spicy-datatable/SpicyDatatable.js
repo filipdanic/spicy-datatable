@@ -133,7 +133,7 @@ class SpicyDatatable extends Component {
     this.scheduleQueryChange = setTimeout(() => {
       const sortRows = filteredRows !== undefined && filteredRows.length > 0 ? filteredRows : rows;
       const sortRev = sortColumn !== undefined && sortOrder && String(sortColumn).toLowerCase() === String(column).toLowerCase() ? false : true;
-      const sortFunction = () => sortRows.sort(sortBy(column, sortRev, c.sortType));
+      const sortFunction = () => sortRows.sort(sortBy(column, sortRev));
       const filteredSortRows = (column.length === 0 ? [] : sortFunction()) || [];
       this.setState({ filteredRows: filteredSortRows, currentPage: 1, sortColumn: column, sortOrder: sortRev });
       setSafely(miniCache, tableKey, 'sortColumn', column);

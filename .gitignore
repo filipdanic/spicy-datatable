@@ -9,6 +9,7 @@ lib/__tests__
 
 # production
 build
+spicy-datatable
 
 # misc
 .DS_Store

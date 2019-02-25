@@ -90,7 +90,7 @@ export function filterRows(rows, columns, searchQuery = '') {
  
 export function sortBy(sortColumn, sortOrder) {
 	const lowerCase = (value) => typeof value === "string" ? value.toLowerCase() : value;
-	const key = (row) => lowerCase ? lowerCase(row[sortColumn]) : row[sortColumn]; 
+	const key = (row) => lowerCase ? isNaN(Date.parse(lowerCase(row[sortColumn]))) ?  lowerCase(row[sortColumn]) : new Date(lowerCase(row[sortColumn])) : row[sortColumn];  
 	const result = (row1,row2) => ( (row1 < row2) ? -1 : ((row1 > row2) ? 1 : 0) ) * [-1,1][Number(Boolean(sortOrder))];
 	
    return function (a,b) {
